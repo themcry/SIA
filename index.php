@@ -15,14 +15,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         body {
-            background-image: url('images/1.jpg'); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
+            background-image: url('images/1.jpg'); 
             background-size: 100% 100% ;
-            background-repeat: no-repeat; /* This prevents the background image from repeating */
+            background-repeat: no-repeat; 
         }
         .btn-transparent {
             background-color: transparent;
             border-color: transparent;
-            color: #fff; /* Text color */
+            color: #fff;
         }
     </style>
 
