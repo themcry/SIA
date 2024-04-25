@@ -111,7 +111,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-s font-weight-bold text-white text-uppercase mb-1">
-                                                Total Bookings</div>
+                                                Today Booking</div>
                                             <div class="h1 mb-0 font-weight-bold text-white">5</div>
                                         </div>
                                         <div class="col-auto">
@@ -178,7 +178,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-s font-weight-bold text-white text-uppercase mb-1">
-                                                Today Bookings</div>
+                                                Total Bookings</div>
                                             <div class="h1 mb-0 font-weight-bold text-white">10</div>
                                         </div>
                                         <div class="col-auto">
