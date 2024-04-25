@@ -141,6 +141,7 @@
                                                         <th>Task Type</th>
                                                         <th>Description</th>
                                                         <th>Status</th>
+                                                        <th>Actions</th>
                                                         <th></th>
                                                     </tr>
                                                 </thead>
