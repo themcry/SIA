@@ -13,7 +13,7 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
         <link rel="stylesheet" href="../assets/css/1.css">
     </head>
-<style>
+<!-- <style>
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -39,7 +39,8 @@
   flex-direction: column;
   justify-content: space-between;
 }
-</style>
+
+</style> -->
 </head>
 <body>
     <div class="wrapper">
@@ -113,28 +114,154 @@
                 </a>
             </div>
         </aside>
-
-
-    
-  
-      <main  style="margin-top: 68px;">
+      <main >
         <div class="container-fluid p-3">
           <div class="card bg-transparent border-0" style="font-size: 14px;">
             <div class="card-body">
-          <h2>Guest</h2>
+          <h2>Housekeeping</h2>
    
 <body>
+<div class="container-fluid p-3">
+                <div class="card bg-transparent border-0" style="font-size: 14px;">
+                    <div class="card-body">
+                        <div class="containers">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4>Task Details</h4>
+                                            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#addTaskModal">Add Task</button>
+                                        </div>
+                                        <div class="card-body table-responsive">
+                                            <table class="table table-custom">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Task ID</th>
+                                                        <th>Room No.</th>
+                                                        <th>Task Type</th>
+                                                        <th>Description</th>
+                                                        <th>Status</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>213123</td>
+                                                        <td>69</td>
+                                                        <td>Cleaning</td>
+                                                        <td>General Cleaning of the room</td>
+                                                        <td>Pending</td>
+                                                        <td>
+                                                            <a href="" class="btn btn-success btn-sm">Edit</a>
+                                                            <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                                        </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>987654</td>
+                                                            <td>101</td>
+                                                            <td>Maintenance</td>
+                                                            <td>Fixing broken faucet</td>
+                                                            <td>In Progress</td>
+                                                            <td>
+                                                                <a href="" class="btn btn-success btn-sm">Edit</a>
+                                                                <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>456789</td>
+                                                            <td>205</td>
+                                                            <td>Laundry</td>
+                                                            <td>Washing bed linens</td>
+                                                            <td>Completed</td>
+                                                            <td>
+                                                                <a href="" class="btn btn-success btn-sm">Edit</a>
+                                                                <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>333222</td>
+                                                            <td>42</td>
+                                                            <td>Repairs</td>
+                                                            <td>Repairing broken window</td>
+                                                            <td>Pending</td>
+                                                            <td>
+                                                                <a href="" class="btn btn-success btn-sm">Edit</a>
+                                                                <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>777888</td>
+                                                            <td>501</td>
+                                                            <td>Cleaning</td>
+                                                            <td>General CLeaning</td>
+                                                            <td>Completed</td>
+                                                            <td>
+                                                                <a href="" class="btn btn-success btn-sm">Edit</a>
+                                                                <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<div class="card-container">
-  <div class="card">
-    <h2>To-Do</h2>
-    <div class="card-content">
-      <p>Room 069 - In Progress - John Doe</p>
-      <p>Room 069 - In Progress - John Doe</p>
+            <div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addTaskModalLabel">Add Task</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="roomnum" class="form-label">Room Number</label>
+                        <input type="text" class="form-control" id="roomId">
+                    </div>
+                    <div class="mb-3">
+                        <label for="roomstatus" class="form-label">Room Status</label>
+                        <select class="form-select" id="roomStatus">
+                            <option value="clean">Clean</option>
+                            <option value="dirty">Dirty</option>
+                            <option value="under_maintenance">Under Maintenance</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tasktype" class="form-label">Task Type</label>
+                        <select class="form-select" id="taskType">
+                            <option value="cleaning">Cleaning</option>
+                            <option value="maintenance">Maintenance</option>
+                            <option value="repair">Repair</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="taskdescription" class="form-label">Task Description</label>
+                        <textarea class="form-control" id="taskDescription" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Add Task</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
-
+    <!-- <div class="card-container">
+    <div class="card">
+        <h2>To-Do</h2>
+        <div class="card-content">
+        <p>Room 069 - In Progress - John Doe</p>
+        <p>Room 069 - In Progress - John Doe</p>
+        </div>
+    </div>
+    </div> -->
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
