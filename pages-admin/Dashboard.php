@@ -70,7 +70,7 @@
                     </a>
                     <ul id="inventory" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Supply</a>
+                            <a href="../pages-admin/supply.php" class="sidebar-link">Supply</a>
                         </li>
                     </ul>
                 </li>
@@ -87,7 +87,7 @@
             </div>
         </aside>
        
-        <main  style="margin-top: 68px;">
+        <main  style="margin-top: 20px;">
               <div class="container-fluid p-3">
 
               <div class="card bg-transparent border-0">
@@ -105,7 +105,7 @@
                 <div class="row g-2">
 
                     <!-- Earnings (Monthly) Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-2">
+                    <div class="card-column mb-2">
                             <div class="card border-0 border-4  border-start border-primary shadow h-100 py-2 bg-primary">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -124,7 +124,7 @@
                             </div>
                         </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
+                        <!-- Earnings (Monthly) Card Example
                         <div class="col-xl-3 col-md-6 mb-2">
                             <div class="card border-0 border-4  border-start border-success border-left-success shadow h-100 py-2 bg-success">
                                 <div class="card-body">
@@ -144,10 +144,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-2">
+                        <div class="card-column mb-2">
                             <div class="card border-0 border-4  border-start border-info shadow h-100 py-2 bg-info">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -172,7 +172,7 @@
                         </div>
 
                         <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-2">
+                        <div class="card-column mb-2">
                             <div class="card border-0 border-4  border-start border-warning shadow h-100 py-2 bg-warning">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -197,8 +197,8 @@
                 <div class="row g-2 mt-2">
 
                     <!-- Area Chart -->
-                    <div class="col-xl-8 col-lg-7">
-                        <div class="card shadow mb-2" style="height: 360px;">
+                    <div class="col-xl-11 col-lg-7">
+                        <div class="card shadow mb-2" style="height: 450px;">
                             <!-- Card Header - Dropdown -->
                             
                             <!-- Card Body -->

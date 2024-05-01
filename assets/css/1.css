@@ -208,6 +208,39 @@ a.sidebar-link:hover {
     margin: auto;
 }
 
+.supply-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 1rem;
+    overflow: hidden;
+}
 
+.supply-table th,
+.supply-table td {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.supply-table th {
+    background-color: #f8f9fa;
+    border-top: 2px solid #dee2e6;
+}
+
+.supply-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.supply-table tr:hover {
+    background-color: #e9ecef;
+}
+
+.card-column {
+    display: inline-block;
+    width: calc(33.33% - 20px); 
+    margin-right: 20px; 
+    vertical-align: top;
+    box-sizing: border-box;
+}
 
 @media (min-width: 768px) {}
