@@ -13,42 +13,87 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/1.css">
     </head>
+    <body>
     <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
     .calendar {
-        width: 300px;
-        margin: 50px auto;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 10px;
-    }
-    .month {
-        text-align: center;
-        font-size: 20px;
-        margin-bottom: 10px;
-    }
-    .days {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-    .day {
-        width: calc(100% / 7);
-        text-align: center;
-        margin-bottom: 5px;
-    }
-    .day:hover {
-        background-color: #f0f0f0;
-        cursor: pointer;
-    }
-    .booked {
-        background-color: #ffcccc;
-    }
+            max-width: 100%;
+            margin-top: 20px;
+            overflow-x: auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: #FFFDFE;
+        }
+
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .calendar-body {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            padding: 20px;
+        }
+
+        .day-cell {
+            padding: 20px; 
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            border-radius: 20%;
+            margin: 10px;
+            font-size: 1.2em; /
+        }
+
+        .booking {
+            position: relative;
+        }
+
+        .booking-indicator {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            background-color: #4caf50;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .other-month {
+            color: #ccc;
+        }
+
+        .booking-details {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            display: none;
+        }
+
+        .booking-details h3 {
+            margin-bottom: 10px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
 </style>
+
 </head>
 <header>
 <div class="wrapper">
@@ -123,62 +168,127 @@
             </div>
         </aside>
 
-    
-  
-      <main  style="margin-top: 68px;">
-        <div class="container-fluid p-3">
-          <div class="card bg-transparent border-0" style="font-size: 14px;">
-            <div class="card-body">
-          <h2>Booking</h2>
-          <div class="calendar">
-    <div class="month">April 2024</div>
-    <div class="days">
-        <div class="day">Sun</div>
-        <div class="day">Mon</div>
-        <div class="day">Tue</div>
-        <div class="day">Wed</div>
-        <div class="day">Thu</div>
-        <div class="day">Fri</div>
-        <div class="day">Sat</div>
-        <div class="day"></div>
-        <div class="day"></div>
-        <div class="day">1</div>
-        <div class="day">2</div>
-        <div class="day">3</div>
-        <div class="day">4</div>
-        <div class="day">5</div>
-        <div class="day">6</div>
-        <div class="day">7</div>
-        <div class="day">8</div>
-        <div class="day">9</div>
-        <div class="day">10</div>
-        <div class="day">11</div>
-        <div class="day">12</div>
-        <div class="day">13</div>
-        <div class="day">14</div>
-        <div class="day">15</div>
-        <div class="day">16</div>
-        <div class="day">17</div>
-        <div class="day">18</div>
-        <div class="day">19</div>
-        <div class="day booked">20</div>
-        <div class="day">21</div>
-        <div class="day">22</div>
-        <div class="day">23</div>
-        <div class="day">24</div>
-        <div class="day">25</div>
-        <div class="day">26</div>
-        <div class="day">27</div>
-        <div class="day">28</div>
-        <div class="day">29</div>
-        <div class="day">30</div>
+        <main style="margin-top: 5px;">
+        <div class="container p-3">
+            <div class="card bg-transparent border-0" style="font-size: 14px;">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Booking</h2>
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <button id="prevBtn" class="btn btn-light"><i class="material-icons-outlined">Prev</i></button>
+                            <h2 id="currentMonthYear" class="text-primary"></h2>
+                            <button id="nextBtn" class="btn btn-light"><i class="material-icons-outlined">Next</i></button>
+                        </div>
+                        <div class="calendar-body" id="calendarBody">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="booking-details" id="bookingDetails">
+        <span class="close-btn" onclick="closeBookingDetails()">&times;</span>
+        <h3 class="text-center mb-4">Booking Details</h3>
+        <div id="bookingDetailsContent"></div>
     </div>
-</div>
 
+    <script>
+        const bookings = [
+            { start: '2024-05-05', end: '2024-05-07', type: 'Deluxe', name: 'John Doe' },
+            { start: '2024-05-10', end: '2024-05-12', type: 'Premium', name: 'Jane Smith' }
+            // Add more booking data here
+        ];
 
+        // Function to generate calendar days
+        function generateCalendar(month, year) {
+            const calendarBody = document.getElementById('calendarBody');
+            calendarBody.innerHTML = ''; // Clear existing calendar
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            for (let i = 1; i <= daysInMonth; i++) {
+                const dayCell = document.createElement('div');
+                dayCell.classList.add('day-cell', 'bg-light');
+                dayCell.textContent = i;
+
+                // Check if there are bookings on this date
+                const booking = bookings.find(booking => {
+                    const startDate = new Date(booking.start);
+                    const endDate = new Date(booking.end);
+                    return startDate.getDate() <= i && i <= endDate.getDate() &&
+                        startDate.getMonth() === month && endDate.getMonth() === month &&
+                        startDate.getFullYear() === year && endDate.getFullYear() === year;
+                });
+
+                if (booking) {
+                    dayCell.classList.add('booking');
+                    const bookingIndicator = document.createElement('div');
+                    bookingIndicator.classList.add('booking-indicator');
+                    const startDate = new Date(booking.start);
+                    const endDate = new Date(booking.end);
+                    const duration = (endDate.getDate() - startDate.getDate()) + 1;
+                    const indicatorHeight = (100 / daysInMonth) * duration;
+                    bookingIndicator.style.height = `${indicatorHeight}%`;
+                    dayCell.appendChild(bookingIndicator);
+                    // Add hover functionality to show booking details
+                    dayCell.title = `${booking.name} (${booking.type})`;
+                }
+
+                dayCell.addEventListener('click', () => {
+                    if (booking) {
+                        displayBookingDetails(booking);
+                    }
+                });
+
+                calendarBody.appendChild(dayCell);
+            }
+        }
+
+        // Display booking details in a popup
+        function displayBookingDetails(booking) {
+            const bookingDetailsContent = document.getElementById('bookingDetailsContent');
+            bookingDetailsContent.innerHTML = `<p>Name: ${booking.name}</p><p>Type: ${booking.type}</p>`;
+            document.getElementById('bookingDetails').style.display = 'block';
+        }
+
+        // Close booking details popup
+        function closeBookingDetails() {
+            document.getElementById('bookingDetails').style.display = 'none';
+        }
+
+        // Initial calendar generation
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+        generateCalendar(currentMonth, currentYear);
+        document.getElementById('currentMonthYear').textContent = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(new Date(currentYear, currentMonth));
+
+        // Event listeners for previous and next buttons
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentMonth === 0) {
+                currentMonth = 11;
+                currentYear--;
+            } else {
+                currentMonth--;
+            }
+            generateCalendar(currentMonth, currentYear);
+            document.getElementById('currentMonthYear').textContent = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(new Date(currentYear, currentMonth));
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (currentMonth === 11) {
+                currentMonth = 0;
+                currentYear++;
+            } else {
+                currentMonth++;
+            }
+            generateCalendar(currentMonth, currentYear);
+            document.getElementById('currentMonthYear').textContent = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(new Date(currentYear, currentMonth));
+        });
+    </script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <script src="../assets/js/1.js"></script>
+    </body>
     </html>
