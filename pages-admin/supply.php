@@ -131,6 +131,7 @@
                                                                     <td>80</td>
                                                                     <td>
                                                                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editSupplyModal">Edit</button>
+                                                                        <button href="" class="btn btn-danger btn-sm" type="button">Delete</button>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -141,6 +142,7 @@
                                                                     <td>150</td>
                                                                     <td>
                                                                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editSupplyModal">Edit</button>
+                                                                        <button href="" class="btn btn-danger btn-sm" type="button">Delete</button>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -151,6 +153,7 @@
                                                                     <td>45</td>
                                                                     <td>
                                                                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editSupplyModal">Edit</button>
+                                                                        <button href="" class="btn btn-danger btn-sm" type="button">Delete</button>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
