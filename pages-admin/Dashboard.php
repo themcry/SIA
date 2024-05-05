@@ -79,7 +79,7 @@
             </ul>
             <div class="sidebar-footer">
             <a href="#" data-toggle="modal" data-target="#myModal" class="sidebar-link" >
-                        <i href="#" class="lni lni-cog" onclick="openNav()"></i>
+                        <i class="lni lni-cog" onclick="openNav()"></i>
                         <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#changePasswordModal">Change Password</button>
