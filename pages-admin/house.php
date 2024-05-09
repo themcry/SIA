@@ -434,7 +434,7 @@ $(document).ready(function(){
     $("#username").val("");
     $("#password").val("");
   });
-
+});
 </script>
 
 <script>

@@ -427,7 +427,8 @@ $(document).ready(function(){
     $("#username").val("");
     $("#password").val("");
   });
-
+});
+  
 </script>
 
 <script>
@@ -447,5 +448,5 @@ function closeNav() {
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <script src="../assets/js/1.js"></script>
-    </body>
-    </html>
+</body>
+</html>
