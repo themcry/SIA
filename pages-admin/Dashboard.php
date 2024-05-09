@@ -1,3 +1,11 @@
+<?php
+session_start(); 
+
+if (!isset($_SESSION['user_id'])) {
+  header('Location: http://localhost/SIA/index.php');
+  exit();
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -95,7 +103,7 @@
 
         
        
-        <main  style="margin-top: 20px;">
+        <main style="height: 100vh; overflow: hidden;">
               <div class="container-fluid p-3">
 
               <div class="card bg-transparent border-0">

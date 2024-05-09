@@ -26,9 +26,8 @@ body {
 .main {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    width: 100%;
-    overflow: hidden;
+    height: 100vh;
+    overflow-y: auto;
     transition: all 0.35s ease-in-out;
     background-color: #fff;
     min-width: 0;
@@ -42,7 +41,7 @@ body {
     background-color: #0e2238;
     display: flex;
     flex-direction: column;
-    height: 150vh;
+    height: 100vh;
 }
 #sidebar.expand {
     width: 260px;

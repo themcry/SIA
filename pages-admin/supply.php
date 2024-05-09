@@ -1,3 +1,11 @@
+<?php
+session_start(); 
+
+if (!isset($_SESSION['user_id'])) {
+  header('Location: http://localhost/SIA/index.php');
+  exit();
+}
+?>
 <!DOCTYPE html>
 <html>
 
