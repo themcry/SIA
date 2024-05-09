@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if (isset($_SESSION['user_id'])) {
+  header('Location: pages-admin/Dashboard.php');
+  exit();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +53,7 @@
             </div>
             <div class="modal-body">
                 <!-- Add your login form here -->
-                <form action="#" method="post">
+                <form action="login.php" method="post">
                     <div class="form-group">
                         <i class="fa fa-user"></i>
                         <label class="fw-bold" for="username"></label>
@@ -59,13 +69,11 @@
                     </div>
                     <button type="submit" name="submitBtn" class="btn btn-success mx-auto d-block mt-3" style="width: 270px; height: 50px; font-size: 18px;">Login</button>
                 </form>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 </body>
 <footer>
