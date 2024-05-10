@@ -263,7 +263,7 @@ if (!isset($_SESSION['user_id'])) {
       <!-- Modal Footer -->
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <a href="logout.php" class="btn btn-primary">Logout</a>
+        <a href="../functions/logout.php" class="btn btn-primary">Logout</a>
       </div>
 
     </div>

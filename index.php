@@ -53,7 +53,7 @@ if (isset($_SESSION['user_id'])) {
             </div>
             <div class="modal-body">
                 <!-- Add your login form here -->
-                <form action="login.php" method="post">
+                <form action="../functions/login.php" method="post">
                     <div class="form-group">
                         <i class="fa fa-user"></i>
                         <label class="fw-bold" for="username"></label>
