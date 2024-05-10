@@ -2,7 +2,7 @@
 session_start(); 
 
 if (!isset($_SESSION['user_id'])) {
-  header('Location: http://localhost/SIA/index.php');
+  header('Location: ../index.php');
   exit();
 }
 ?>
