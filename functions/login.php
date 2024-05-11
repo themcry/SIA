@@ -6,10 +6,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $password = $_POST['psw'];
 
   if (empty($username)) {
-      header("Location: index.php?error=Invalid Username");
+      header("Location: ../index.php?error=Invalid Username");
 	    exit();
   } else if (empty($password)) {
-      header("Location: index.php?error=Invalid Password");
+      header("Location: ../index.php?error=Invalid Password");
       exit();
   }
 
@@ -28,11 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: ../pages-admin/Dashboard.php');
         exit(); 
     } else {
-      header("Location: index.php?error=Invalid Username or Password");
+      header("Location: ../index.php?error=Invalid Username or Password");
 			exit();
     }
   } else {
-    header("Location: index.php?error=Invalid Username or Password");
+    header("Location: ../index.php?error=Invalid Username or Password");
 		exit();
   }
 }

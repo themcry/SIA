@@ -119,7 +119,7 @@ border-bottom-right-radius: .3rem;
                   <div data-mdb-input-init class="form-outline mb-4">
                   <label class="form-label" for="username">Username</label>
                     <input type="text" class="form-control"
-                      name="uname" placeholder="Username" />
+                      name="uname" required placeholder="Username" />
                     
                   </div>
   
