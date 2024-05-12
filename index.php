@@ -74,18 +74,19 @@ if (isset($_SESSION['user_id'])) {
 
     .btn-custom-color {
 
-      border: none;
-      background-color: #0EDC8D;
-      color: white;
-      /* Optionally change the text color */
-    }
+  border: none;
+  background-color: #33b249; 
+  color: white;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-    .btn-custom-color:hover {
-
-      background-color:
-        #74E291;
-      color: white;
-    }
+.btn-custom-color:hover {
+  background-color: #0EDC8D;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
 
 
 
@@ -106,16 +107,21 @@ if (isset($_SESSION['user_id'])) {
       border-color: red;
     }
 
+    input.form-control:hover {
+    border-color: #33b249;
+  }
+    
+
     /* Add a hover effect */
   </style>
 </head>
 
-<body style="background-color: #A3FFD6;">
+<body style="background-color: #16312F;">
 
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-xl-10">
-        <div class="card rounded-3 text-black">
+      <div class="card rounded-3 text-black" style="background-color: #FFFDFE;">
           <div class="row g-0">
             <div class="col-lg-6">
               <div class="card-body p-md-4 mx-md-4">
@@ -127,7 +133,7 @@ if (isset($_SESSION['user_id'])) {
                   <div style="display: flex; flex-direction: column; align-items: center;">
                     <img src="images/logo.png" width="100px" height="70px">
                     <p style="font-size: 23px;  font-weight: 650; color: #253331;" >Welcome Back!</p>
-                    <span style="font-size: 23px; color:#0EDC8D"><strong>Hotel Property Management</strong></span>
+                    <span style="font-size: 23px; color:#33b249"><strong>Hotel Property Management</strong></span>
                   </div>
                   <!-- <p style="font-size: 25px; margin-top: 10px; font-weight: 650;">Log In</p> -->
                 </div>
@@ -161,7 +167,8 @@ if (isset($_SESSION['user_id'])) {
                   </div>
 
                   <div class="text-center pt-1 mb-5 pb-1">
-                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-lg btn-block fa-lg  mb-2 btn-custom-color" type="submit" name="submit" style="font-weight: 650;">Log In</button>
+                  <button data-mdb-button-init data-mdb-ripple-init class="btn btn-lg btn-block fa-lg mb-2 btn-custom-color" type="submit" name="submit" style="font-weight: 650;">Log In</button>
+
 
 
 
@@ -172,7 +179,7 @@ if (isset($_SESSION['user_id'])) {
               </div>
             </div>
 
-            <div class="col-lg-6 d-flex align-items-center  image-container" style="background-image: url('images/1.jpg'); background-size: 459px; background-repeat: no-repeat; animation: zoomIn 1s;">
+            <div class="col-lg-6 d-flex align-items-center image-container" style="background-image: url('images/eurotel_hotel_cover.jpg'); background-position: center; background-size: cover; background-repeat: no-repeat; animation: zoomIn 1s;">
 
 
 
@@ -215,6 +222,25 @@ if (isset($_SESSION['user_id'])) {
 
 
 <script>
+  const passwordInput = document.getElementById('password');
+  const togglePassword = document.getElementById('togglePassword');
+
+  togglePassword.addEventListener('mouseenter', function() {
+    togglePasswordVisibility(passwordInput, true);
+  });
+
+  togglePassword.addEventListener('mouseleave', function() {
+    togglePasswordVisibility(passwordInput, false);
+  });
+
+  function togglePasswordVisibility(inputField, show) {
+    const type = show ? 'text' : 'password';
+    inputField.setAttribute('type', type);
+    togglePassword.innerHTML = show ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+  }
+</script>
+
+<!-- <script>
   togglePassword.addEventListener('click', function() {
     togglePasswordVisibility(document.getElementById('password'), togglePassword);
   });
@@ -224,4 +250,4 @@ if (isset($_SESSION['user_id'])) {
     inputField.setAttribute('type', type);
     toggleButton.innerHTML = type === 'password' ? '<i class="fas fa-eye-slash"></i>' : '<i class="fas fa-eye"></i>';
   }
-</script>
+</script> -->
