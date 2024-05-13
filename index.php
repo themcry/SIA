@@ -237,7 +237,7 @@ if (isset($_SESSION['user_id'])) {
     const type = show ? 'text' : 'password';
     inputField.setAttribute('type', type);
     togglePassword.innerHTML = show ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
-  }
+  };
 </script>
 
 <!-- <script>

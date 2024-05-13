@@ -224,7 +224,7 @@ if (!isset($_SESSION['user_id'])) {
       <!-- Modal Body -->
       <div class="modal-body">
         <!-- Form for adding new account -->
-        <form id="addAccountForm">
+        <form id="addAccountForm" style="display: inline-flex; gap: 10px; flex-wrap: wrap;">
           <div class="form-group">
             <label for="username">Username:</label>
             <input type="text" class="form-control" id="username" name="username" required>

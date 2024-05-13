@@ -254,6 +254,8 @@ a.sidebar-link:hover {
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
+  display: flex;
+  align-items: center;
 }
 
 .sidebar a {
