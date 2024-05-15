@@ -51,7 +51,7 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 
 <body>
-<div class="wrapper">
+    <div class="wrapper">
         <aside id="sidebar">
             <div class="d-flex">
                 <button class="toggle-btn" type="button">
@@ -69,8 +69,7 @@ if (!isset($_SESSION['user_id'])) {
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#front" aria-expanded="false" aria-controls="front">
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#front" aria-expanded="false" aria-controls="front">
                         <i class="material-symbols-outlined"> desk </i>
                         <span>Front-Desk</span>
                     </a>
@@ -84,8 +83,7 @@ if (!isset($_SESSION['user_id'])) {
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#back" aria-expanded="false" aria-controls="back">
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#back" aria-expanded="false" aria-controls="back">
                         <i class="material-symbols-outlined">support_agent</i>
                         <span>Back-Office</span>
                     </a>
@@ -99,8 +97,7 @@ if (!isset($_SESSION['user_id'])) {
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#inventory" aria-expanded="false" aria-controls="inventory">
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#inventory" aria-expanded="false" aria-controls="inventory">
                         <i class="material-symbols-outlined">inventory</i>
                         <span>inventory</span>
                     </a>
@@ -110,21 +107,21 @@ if (!isset($_SESSION['user_id'])) {
                         </li>
                     </ul>
                 </li>
-                
+
             </ul>
             <div class="sidebar-footer">
-            <a href="#" data-toggle="modal" data-target="#myModal" class="sidebar-link" >
-                        <i class="lni lni-cog" onclick="openNav()"></i>
-                        <div id="mySidebar" class="sidebar">
+                <a href="#" data-toggle="modal" data-target="#myModal" class="sidebar-link">
+                    <i class="lni lni-cog" onclick="openNav()"></i>
+                    <div id="mySidebar" class="sidebar">
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#manageAccountsModal">Manage Accounts</button>
-</div>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#manageAccountsModal">Manage Accounts</button>
+                    </div>
 
 
-<a href="#" class="sidebar-link" data-toggle="modal" data-target="#logoutModal">
-    <i class="lni lni-exit"></i>
-    <span>Logout</span>
-</a>
+                    <a href="#" class="sidebar-link" data-toggle="modal" data-target="#logoutModal">
+                        <i class="lni lni-exit"></i>
+                        <span>Logout</span>
+                    </a>
             </div>
         </aside>
         <main>
@@ -132,6 +129,7 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="card bg-transparent border-0" style="font-size: 14px;">
                     <div class="card-body">
                         <h4>Housekeeping</h4>
+
                         <body>
                             <div class="container-fluid p-3">
                                 <div class="card bg-transparent border-0" style="font-size: 14px;">
@@ -167,8 +165,8 @@ if (!isset($_SESSION['user_id'])) {
                                                                         <td>General Cleaning of the room</td>
                                                                         <td>Pending</td>
                                                                         <td>
-                                                                            <a href="" class="btn btn-success btn-sm">Edit</a>
-                                                                            <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                                                            <button href=""  class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editTaskModal">Edit</button>
+                                                                            <button href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteTaskModal">Delete</button>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
@@ -178,8 +176,8 @@ if (!isset($_SESSION['user_id'])) {
                                                                         <td>Fixing broken faucet</td>
                                                                         <td>In Progress</td>
                                                                         <td>
-                                                                            <a href="" class="btn btn-success btn-sm">Edit</a>
-                                                                            <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                                                            <button href="" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editTaskModal">Edit</button>
+                                                                            <button href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteTaskModal">Delete</button>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
@@ -189,8 +187,8 @@ if (!isset($_SESSION['user_id'])) {
                                                                         <td>Washing bed linens</td>
                                                                         <td>Completed</td>
                                                                         <td>
-                                                                            <a href="" class="btn btn-success btn-sm">Edit</a>
-                                                                            <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                                                            <button href="" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editTaskModal">Edit</button>
+                                                                            <button href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteTaskModal">Delete</button>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
@@ -200,8 +198,8 @@ if (!isset($_SESSION['user_id'])) {
                                                                         <td>Repairing broken window</td>
                                                                         <td>Pending</td>
                                                                         <td>
-                                                                            <a href="" class="btn btn-success btn-sm">Edit</a>
-                                                                            <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                                                            <button href="" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editTaskModal">Edit</button>
+                                                                            <button href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteTaskModal">Delete</button>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
@@ -211,8 +209,8 @@ if (!isset($_SESSION['user_id'])) {
                                                                         <td>General CLeaning</td>
                                                                         <td>Completed</td>
                                                                         <td>
-                                                                            <a href="" class="btn btn-success btn-sm">Edit</a>
-                                                                            <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                                                            <button href="" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editTaskModal">Edit</button>
+                                                                            <button href=""  class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteTaskModal">Delete</button>
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>
@@ -225,7 +223,7 @@ if (!isset($_SESSION['user_id'])) {
                                     </div>
                                 </div>
                             </div>
-
+                            <!-- Add task Modal -->
                             <div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -268,6 +266,67 @@ if (!isset($_SESSION['user_id'])) {
                                     </div>
                                 </div>
                             </div>
+                            <!-- edit task modal -->
+                            <div class="modal fade" id="editTaskModal" tabindex="-1" aria-labelledby="editTaskModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editTaskModalLabel">Edit Task</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="mb-3">
+                                                    <label for="roomnum" class="form-label">Room Number</label>
+                                                    <input type="text" class="form-control" id="roomId">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="roomstatus" class="form-label">Room Status</label>
+                                                    <select class="form-select" id="roomStatus">
+                                                        <option value="clean">Clean</option>
+                                                        <option value="dirty">Dirty</option>
+                                                        <option value="under_maintenance">Under Maintenance</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="tasktype" class="form-label">Task Type</label>
+                                                    <select class="form-select" id="taskType">
+                                                        <option value="cleaning">Cleaning</option>
+                                                        <option value="maintenance">Maintenance</option>
+                                                        <option value="repair">Repair</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="taskdescription" class="form-label">Task Description</label>
+                                                    <textarea class="form-control" id="taskDescription" rows="3"></textarea>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn-primary">Save Changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Delete Modal -->
+                            <div class="modal fade" id="deleteTaskModal" tabindex="-1" aria-labelledby="deleteTaskModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteTaskModalLabel">Confirm Delete Task</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete this task?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn-danger" onclick="deleteTask">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <script>
                                 // script for search bar
                                 document.addEventListener('DOMContentLoaded', function() {
@@ -306,158 +365,162 @@ if (!isset($_SESSION['user_id'])) {
 </div>
 </div> -->
 
-<!-- The Logout Modal -->
-<div class="modal fade" id="logoutModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
+                            <!-- The Logout Modal -->
+                            <div class="modal fade" id="logoutModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Confirm Logout</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Confirm Logout</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
 
-      <!-- Modal Body -->
-      <div class="modal-body">
-        <p>Are you sure you want to logout?</p>
-      </div>
+                                        <!-- Modal Body -->
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to logout?</p>
+                                        </div>
 
-      <!-- Modal Footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <a href="../functions/logout.php" class="btn btn-primary">Logout</a>
-      </div>
+                                        <!-- Modal Footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <a href="../functions/logout.php" class="btn btn-primary">Logout</a>
+                                        </div>
 
-    </div>
-  </div>
-</div>
+                                    </div>
+                                </div>
+                            </div>
 
-<!-- The Modal -->
-<div class="modal fade" id="manageAccountsModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
+                            <!-- The Modal -->
+                            <div class="modal fade" id="manageAccountsModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Manage Accounts</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Manage Accounts</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
 
-      <!-- Modal Body -->
-      <div class="modal-body">
-        <!-- Form for adding new account -->
-        <form id="addAccountForm" style="display: inline-flex; gap: 10px; flex-wrap: wrap;">
-          <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" class="form-control" id="username" name="username" required>
-          </div>
-          <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-          </div>
-          <button type="submit" class="btn btn-success">Add Account</button>
-        </form>
+                                        <!-- Modal Body -->
+                                        <div class="modal-body">
+                                            <!-- Form for adding new account -->
+                                            <form id="addAccountForm" style="display: inline-flex; gap: 10px; flex-wrap: wrap;">
+                                                <div class="form-group">
+                                                    <label for="username">Username:</label>
+                                                    <input type="text" class="form-control" id="username" name="username" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password">Password:</label>
+                                                    <input type="password" class="form-control" id="password" name="password" required>
+                                                </div>
+                                                <button type="submit" class="btn btn-success">Add Account</button>
+                                            </form>
 
-        <!-- List of existing accounts -->
-        <h5 class="mt-4">Existing Accounts:</h5>
-        <ul id="accountList" class="list-group">
-        <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Email</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead> <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td><button type="button" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/></i></button></svg>&nbsp;<button type="button" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-  <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-</svg>
-</svg></button><td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-      <td><button type="button" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/></button></svg>&nbsp;<button type="button" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-  <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-</svg>
-</svg></button><td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>Bird</td>
-      <td>@twitter</td>
-      <td><button type="button" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/></i></button></svg>&nbsp;<button type="button" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-  <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-</svg>
-</svg></button><td>
-    </tr>
-  </tbody>
-</table>
-        </ul>
+                                            <!-- List of existing accounts -->
+                                            <h5 class="mt-4">Existing Accounts:</h5>
+                                            <ul id="accountList" class="list-group">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">First</th>
+                                                            <th scope="col">Last</th>
+                                                            <th scope="col">Email</th>
+                                                            <th scope="col">Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">1</th>
+                                                            <td>Mark</td>
+                                                            <td>Otto</td>
+                                                            <td>@mdo</td>
+                                                            <td><button type="button" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" /></i></button></svg>&nbsp;<button type="button" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
+                                                                    </svg>
+                                                                    </svg></button>
+                                                            <td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">2</th>
+                                                            <td>Jacob</td>
+                                                            <td>Thornton</td>
+                                                            <td>@fat</td>
+                                                            <td><button type="button" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" /></button></svg>&nbsp;<button type="button" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
+                                                                    </svg>
+                                                                    </svg></button>
+                                                            <td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">3</th>
+                                                            <td>Larry</td>
+                                                            <td>Bird</td>
+                                                            <td>@twitter</td>
+                                                            <td><button type="button" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" /></i></button></svg>&nbsp;<button type="button" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
+                                                                    </svg>
+                                                                    </svg></button>
+                                                            <td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </ul>
 
 
-      <!-- Modal Footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+                                            <!-- Modal Footer -->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
 
-    </div>
-  </div>
-</div>
+                                        </div>
+                                    </div>
+                                </div>
 
-<script>
-$(document).ready(function(){
-  // Dummy data for existing accounts (replace with your data)
-  var existingAccounts = ["Account 1", "Account 2", "Account 3"];
+                                <script>
+                                    $(document).ready(function() {
+                                        // Dummy data for existing accounts (replace with your data)
+                                        var existingAccounts = ["Account 1", "Account 2", "Account 3"];
 
-  // Display existing accounts in the modal
-  for(var i = 0; i < existingAccounts.length; i++) {
-    $("#accountList").append("<li class='list-group-item'><input type='checkbox' class='accountCheckbox' id='checkbox" + i + "'>" + existingAccounts[i] + "</li>");
-  }
+                                        // Display existing accounts in the modal
+                                        for (var i = 0; i < existingAccounts.length; i++) {
+                                            $("#accountList").append("<li class='list-group-item'><input type='checkbox' class='accountCheckbox' id='checkbox" + i + "'>" + existingAccounts[i] + "</li>");
+                                        }
 
-  // Add new account
-  $("#addAccountForm").submit(function(event){
-    event.preventDefault();
-    var username = $("#username").val();
-    var password = $("#password").val();
-    // Add the new account to the list
-    $("#accountList").append("<li class='list-group-item'><input type='checkbox' class='accountCheckbox' id='checkbox" + existingAccounts.length + "'>" + username + " (Password: " + password + ")</li>");
-    // Clear the form fields
-    $("#username").val("");
-    $("#password").val("");
-  });
-});
-</script>
+                                        // Add new account
+                                        $("#addAccountForm").submit(function(event) {
+                                            event.preventDefault();
+                                            var username = $("#username").val();
+                                            var password = $("#password").val();
+                                            // Add the new account to the list
+                                            $("#accountList").append("<li class='list-group-item'><input type='checkbox' class='accountCheckbox' id='checkbox" + existingAccounts.length + "'>" + username + " (Password: " + password + ")</li>");
+                                            // Clear the form fields
+                                            $("#username").val("");
+                                            $("#password").val("");
+                                        });
+                                    });
+                                </script>
 
-<script>
-function openNav() {
-  document.getElementById("mySidebar").style.width = "250px";
-}
+                                <script>
+                                    function openNav() {
+                                        document.getElementById("mySidebar").style.width = "250px";
+                                    }
 
-function closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
-}
-</script>
+                                    function closeNav() {
+                                        document.getElementById("mySidebar").style.width = "0";
+                                    }
+                                </script>
                         </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
                         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
                         <script src="../assets/js/1.js"></script>
 
