@@ -1,10 +1,23 @@
 <?php
 session_start(); 
+require_once('../classes/db_connection.php');
 
 if (!isset($_SESSION['id'])) {
   header('Location: ../index.php');
   exit();
 }
+
+
+$query = "SELECT * FROM housekeeping";
+$result = $conn->query($query);
+
+
+$query1 = "SELECT * FROM room";
+$result1 = $conn->query($query1);
+
+$query2 = "SELECT * FROM housekeeping";
+$result2 = $conn->query($query2);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -152,6 +165,7 @@ if (!isset($_SESSION['id'])) {
                                                                     <tr>
                                                                         <th>Task ID</th>
                                                                         <th>Room No.</th>
+                                                                        <th>Room Status</th>
                                                                         <th>Task Type</th>
                                                                         <th>Description</th>
                                                                         <th>Status</th>
@@ -159,61 +173,36 @@ if (!isset($_SESSION['id'])) {
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
+                                                                    <?php 
+                                                                    
+                                                                     if ($result->num_rows > 0) {
+                                                                        while($row = $result->fetch_assoc()) {
+
+                                                                        if ($row["status"] == 0){
+                                                                            $status = "Pending";
+                                                                        } elseif($row["status"] == 1){
+                                                                            $status = "In Progress";
+                                                                        } else {
+                                                                            $status = "Completed";
+                                                                        }
+                                                                    ?>
                                                                     <tr>
-                                                                        <td>213123</td>
-                                                                        <td>69</td>
-                                                                        <td>Cleaning</td>
-                                                                        <td>General Cleaning of the room</td>
-                                                                        <td>Pending</td>
+                                                                        <td><?php echo $row['task_id']?></td>
+                                                                        <td><?php echo $row['room_no']?></td>
+                                                                        <td><?php echo $row['room_status']?></td>
+                                                                        <td><?php echo $row['task_type']?></td>
+                                                                        <td><?php echo $row['description']?></td>
+                                                                        <td><?php echo $status?></td>
                                                                         <td>
-                                                                            <button href=""  class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editTaskModal">Edit</button>
-                                                                            <button href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteTaskModal">Delete</button>
+                                                                            <button href=""  class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editTaskModal<?php echo $row['task_id'];?>">Edit</button>
+                                                                            <button href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteTaskModal<?php echo $row['task_id'];?>">Delete</button>
                                                                         </td>
                                                                     </tr>
-                                                                    <tr>
-                                                                        <td>987654</td>
-                                                                        <td>101</td>
-                                                                        <td>Maintenance</td>
-                                                                        <td>Fixing broken faucet</td>
-                                                                        <td>In Progress</td>
-                                                                        <td>
-                                                                            <button href="" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editTaskModal">Edit</button>
-                                                                            <button href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteTaskModal">Delete</button>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>456789</td>
-                                                                        <td>205</td>
-                                                                        <td>Laundry</td>
-                                                                        <td>Washing bed linens</td>
-                                                                        <td>Completed</td>
-                                                                        <td>
-                                                                            <button href="" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editTaskModal">Edit</button>
-                                                                            <button href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteTaskModal">Delete</button>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>333222</td>
-                                                                        <td>42</td>
-                                                                        <td>Repairs</td>
-                                                                        <td>Repairing broken window</td>
-                                                                        <td>Pending</td>
-                                                                        <td>
-                                                                            <button href="" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editTaskModal">Edit</button>
-                                                                            <button href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteTaskModal">Delete</button>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>777888</td>
-                                                                        <td>501</td>
-                                                                        <td>Cleaning</td>
-                                                                        <td>General CLeaning</td>
-                                                                        <td>Completed</td>
-                                                                        <td>
-                                                                            <button href="" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editTaskModal">Edit</button>
-                                                                            <button href=""  class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteTaskModal">Delete</button>
-                                                                        </td>
-                                                                    </tr>
+                                                                    <?php 
+                                                                        }    
+                                                                            } else {
+                                                                                    echo "0 results";
+                                                                                }?>
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -233,14 +222,18 @@ if (!isset($_SESSION['id'])) {
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form>
+                                            <form method="post" action="../functions/housekeeping.php">
                                                 <div class="mb-3">
-                                                    <label for="roomnum" class="form-label">Room Number</label>
-                                                    <input type="text" class="form-control" id="roomId">
+                                                <label for="roomstatus" class="form-label">Room No</label>
+                                                    <select class="form-select" id="roomStatus" name="room_no">
+                                                    <?php  while($row1 = $result1->fetch_assoc()) {?>
+                                                        <option value="<?php echo $row1["room_no"]?>"><?php echo $row1["room_no"]?></option>
+                                                        <?php }?>
+                                                    </select>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="roomstatus" class="form-label">Room Status</label>
-                                                    <select class="form-select" id="roomStatus">
+                                                    <select class="form-select" id="roomStatus" name="room_status">
                                                         <option value="clean">Clean</option>
                                                         <option value="dirty">Dirty</option>
                                                         <option value="under_maintenance">Under Maintenance</option>
@@ -248,27 +241,29 @@ if (!isset($_SESSION['id'])) {
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="tasktype" class="form-label">Task Type</label>
-                                                    <select class="form-select" id="taskType">
+                                                    <select class="form-select" id="taskType" name="task_type">
                                                         <option value="cleaning">Cleaning</option>
                                                         <option value="maintenance">Maintenance</option>
                                                         <option value="repair">Repair</option>
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="taskdescription" class="form-label">Task Description</label>
-                                                    <textarea class="form-control" id="taskDescription" rows="3"></textarea>
+                                                    <label for="taskdescription" class="form-label" >Task Description</label>
+                                                    <textarea class="form-control" id="taskDescription" rows="3" name="description"></textarea>
                                                 </div>
-                                            </form>
+                                          
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Add Task</button>
+                                            <button type="submit" name="submit" class="btn btn-primary">Add Task</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- edit task modal -->
-                            <div class="modal fade" id="editTaskModal" tabindex="-1" aria-labelledby="editTaskModalLabel" aria-hidden="true">
+                            <?php  while($row2 = $result2->fetch_assoc()) {?>
+                            <div class="modal fade" id="editTaskModal<?php echo $row2['task_id'];?>" tabindex="-1" aria-labelledby="editTaskModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -276,58 +271,84 @@ if (!isset($_SESSION['id'])) {
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form>
-                                                <div class="mb-3">
-                                                    <label for="roomnum" class="form-label">Room Number</label>
-                                                    <input type="text" class="form-control" id="roomId">
+                                        <form method="post" action="../functions/edit_housekeeping.php">    
+                                          
+                                            <div class="mb-3">
+                                                 
+                                                <label for="roomstatus" class="form-label">Room No</label>
+                                                    <select class="form-select" id="roomStatus" name="room_no">
+                                                        <?php $query3 = "SELECT * FROM room";
+                                                        $result3 = $conn->query($query3);
+                                                        while($row3 = $result3->fetch_assoc()) {
+                                                        ?>
+                                    
+                                                        <option value="<?php echo $row3["room_no"]?>"><?php echo $row3["room_no"]?></option>
+                                                        <?php }?>
+                                                    </select>
+
+                                              
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="roomstatus" class="form-label">Room Status</label>
-                                                    <select class="form-select" id="roomStatus">
-                                                        <option value="clean">Clean</option>
-                                                        <option value="dirty">Dirty</option>
-                                                        <option value="under_maintenance">Under Maintenance</option>
+                                                    <select class="form-select" id="roomStatus" name="room_status" value="<?php echo $row2['room_task']?>">
+                                                        <option value="clean" <?php if ($row2['room_status'] == 'clean') echo 'selected'; ?>>Clean</option>
+                                                        <option value="dirty" <?php if ($row2['room_status'] == 'dirty') echo 'selected'; ?>>Dirty</option>
+                                                        <option value="under_maintenance" <?php if ($row2['room_status'] == 'under_maintenance') echo 'selected'; ?>>Under Maintenance</option>
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="tasktype" class="form-label">Task Type</label>
-                                                    <select class="form-select" id="taskType">
-                                                        <option value="cleaning">Cleaning</option>
-                                                        <option value="maintenance">Maintenance</option>
-                                                        <option value="repair">Repair</option>
+                                                    <select class="form-select" id="taskType" name="task_type" value="<?php echo $row2['task_type']?>">
+                                                        <option value="cleaning" <?php if ($row2['task_type'] == 'cleaning') echo 'selected'; ?>>Cleaning</option>
+                                                        <option value="maintenance" <?php if ($row2['task_type'] == 'maintenance') echo 'selected'; ?>>Maintenance</option>
+                                                        <option value="repair" <?php if ($row2['task_type'] == 'repair') echo 'selected'; ?>>Repair</option>
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="taskdescription" class="form-label">Task Description</label>
-                                                    <textarea class="form-control" id="taskDescription" rows="3"></textarea>
+                                                    <label for="taskdescription" class="form-label" >Task Description</label>
+                                                    <textarea class="form-control" id="taskDescription" rows="3" name="description" value="<?php echo $row2['description']?>"></textarea>
                                                 </div>
-                                            </form>
+                                                <input type="hidden" id="editTaskId" value="<?php echo $row2["task_id"]?>"name="task_id">
+                                             
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                            <button type="button" class="btn btn-primary">Save Changes</button>
+                                            <button type="submit" class="btn btn-primary">Save Changes</button>
                                         </div>
+                                        
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Delete Modal -->
-                            <div class="modal fade" id="deleteTaskModal" tabindex="-1" aria-labelledby="deleteTaskModalLabel" aria-hidden="true">
+
+
+
+
+
+                              <!-- Delete Modal -->
+                              <div class="modal fade" id="deleteTaskModal<?php echo $row2['task_id']?>" tabindex="-1" aria-labelledby="deleteTaskModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="deleteTaskModalLabel">Confirm Delete Task</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
+                                        <form method="post" action="../functions/delete_housekeeping.php">    
+
                                         <div class="modal-body">
                                             Are you sure you want to delete this task?
+                                            <input type="hidden" id="editTaskId" value="<?php echo $row2["task_id"]?>"name="task_id">
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                            <button type="button" class="btn btn-danger" onclick="deleteTask">Delete</button>
+                                            <button type="submit" class="btn btn-danger" onclick="deleteTask">Delete</button>
                                         </div>
+                                    </form>
                                     </div>
                                 </div>
                             </div>
+                            <?php }?>
+                          
                             <script>
                                 // script for search bar
                                 document.addEventListener('DOMContentLoaded', function() {

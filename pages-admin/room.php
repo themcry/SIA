@@ -1,10 +1,14 @@
 <?php
 session_start(); 
+require_once('../classes/db_connection.php');
 
 if (!isset($_SESSION['id'])) {
   header('Location: ../index.php');
   exit();
 }
+
+$query = "SELECT * FROM room";
+$result = $conn->query($query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -167,33 +171,86 @@ if (!isset($_SESSION['id'])) {
                     <div class="card bg-transparent border-0" style="font-size: 14px;">
                         <div class="card-body">
                         <div class="container">
-                                <h1>Room Status Updates</h1>
+                               
+                                    <div class="row">
+                                        <div class="col-6">
+                                        Room Status Updates
+                                        </div>
+
+
+                                        <div class="col-6">
+                                                    <!-- Add Room -->
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    Add Room
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Room</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                    <form method="post" action="../functions/room.php">
+
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Room Number</label>
+                                                        <input type="text" class="form-control" name="room_no">
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                    <select class="form-select" aria-label="Default select example" name="room_type">
+                                                        <option selected>Select Room Type</option>
+                                                        <option value="Euro Suite Twin Room">Euro Suite Twin Room</option>
+                                                        <option value="Euro Suite Room">Euro Suite Room</option>
+                                                        <option value="Standard Room">Standard Room</option>
+                                                        <option value="Standard Twin Room<">Standard Twin Room</option>
+                                                        <option value="Studio Room">Studio Room</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Price</label>
+                                                        <input type="text" class="form-control" name="price">
+                                                    </div>
+                                                    
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                     </form>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                        </div>
+
+
+                                    </div>
+
+
                                 <div class="room-status">
+                                    <?php 
+                                    
+                                    if ($result->num_rows > 0) {
+                                        while($row = $result->fetch_assoc()) {
+                                        
+                                    ?>
+                                
                                     <div class="room">
-                                        <h2>Room 01</h2>
+                                        <h2><?php echo $row['room_no']?></h2>
                                         <p>Status: <span id="status01" class="status-clean">Clean</span></p>
                                         <button onclick="updateStatus('01')">Toggle Status</button>
                                     </div>
-                                    <div class="room">
-                                        <h2>Room 11</h2>
-                                        <p>Status: <span id="status11" class="status-dirty">Dirty</span></p>
-                                        <button onclick="updateStatus('11')">Toggle Status</button>
-                                    </div>
-                                    <div class="room">
-                                        <h2>Room 20</h2>
-                                        <p>Status: <span id="status20" class="status-maintenance">Maintenance</span></p>
-                                        <button onclick="updateStatus('20')">Toggle Status</button>
-                                    </div>
-                                    <div class="room">
-                                        <h2>Room 16</h2>
-                                        <p>Status: <span id="status16" class="status-maintenance">Maintenance</span></p>
-                                        <button onclick="updateStatus('16')">Toggle Status</button>
-                                    </div>
-                                    <div class="room">
-                                        <h2>Room 17</h2>
-                                        <p>Status: <span id="status17" class="status-maintenance">Maintenance</span></p>
-                                        <button onclick="updateStatus('17')">Toggle Status</button>
-                                    </div>
+
+                                    <?php 
+                                    }    
+                                        } else {
+                                                echo "0 results";
+                                            }?>
+                                    
                                 </div>
                             </div>
                         </div>
