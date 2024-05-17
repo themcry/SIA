@@ -13,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param('ssssi', $room_no, $room_status, $task_type, $description, $task_id);
 
     if ($stmt->execute()) {
-        echo 'Record updated successfully';
+        header('Location: ../pages-admin/house.php?status=updated');
     } else {
-        echo 'Error updating record: ' . $conn->error;
+        header('Location: ../pages-admin/house.php?status=error');
     }
 
     $stmt->close();

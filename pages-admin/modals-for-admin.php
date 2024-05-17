@@ -145,3 +145,26 @@
                     </div>
                 </div>
                 </div>
+
+               
+  <!-- Fontawesome -->
+  <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+
+<script>
+  const passwordInput = document.getElementById('password');
+  const togglePassword = document.getElementById('togglePassword');
+
+  togglePassword.addEventListener('mouseenter', function() {
+    togglePasswordVisibility(passwordInput, true);
+  });
+
+  togglePassword.addEventListener('mouseleave', function() {
+    togglePasswordVisibility(passwordInput, false);
+  });
+
+  function togglePasswordVisibility(inputField, show) {
+    const type = show ? 'text' : 'password';
+    inputField.setAttribute('type', type);
+    togglePassword.innerHTML = show ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+  };
+</script>
