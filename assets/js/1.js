@@ -1,7 +1,5 @@
-const hamBurger = document.querySelector(".toggle-btn");
+// Find the sidebar element
+const sidebar = document.querySelector("#sidebar");
 
-hamBurger.addEventListener("click", function () {
-  document.querySelector("#sidebar").classList.toggle("expand");
-
-});
-
+// Add a class to expand the sidebar when the page loads
+sidebar.classList.add("expand");
