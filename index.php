@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['id'])) {
   header('Location: pages-admin/Dashboard.php');
   exit();
 }
@@ -146,19 +146,19 @@ if (isset($_SESSION['user_id'])) {
 
 
 
-                <form method="post" action="functions/login.php">
+                <form method="POST" action="functions/login.php">
 
 
                   <div data-mdb-input-init class="form-outline mb-4">
                     <label class="form-label" for="username" style="font-weight: 500;">Username</label>
-                    <input type="text" class="form-control" name="uname" required placeholder="Username" />
+                    <input type="text" class="form-control" name="username" required placeholder="Username" />
 
                   </div>
 
                   <div class="col-sm-15 mb-4">
                     <label for="password" class="form-label fw-bold" style="font-weight: 500;">Password</label>
                     <div class="input-group">
-                      <input type="password" class="form-control  border-end-0" id="password" name="psw" required placeholder="Password">
+                      <input type="password" class="form-control  border-end-0" id="password" name="password" required placeholder="Password">
                       <!-- Change the id of the eye icon to togglePassword -->
                       <span class="input-group-text bg-white border-start-0" id="togglePassword"><i class="fas fa-eye-slash"></i></span>
                     </div>
@@ -169,7 +169,7 @@ if (isset($_SESSION['user_id'])) {
                   <div class="text-center pt-1 mb-5 pb-1">
                   <button data-mdb-button-init data-mdb-ripple-init class="btn btn-lg btn-block fa-lg mb-2 btn-custom-color" type="submit" name="submit" style="font-weight: 650;">Log In</button>
 
-
+  
 
 
                   </div>
