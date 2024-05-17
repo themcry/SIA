@@ -5,6 +5,16 @@ if (!isset($_SESSION['id'])) {
   header('Location: ../index.php');
   exit();
 }
+require_once('../classes/db_connection.php');
+
+// Fetch booking data
+$query2 = "SELECT * FROM Bookings";
+$result2 = $conn->query($query2);
+
+$bookings = array();
+while($row = $result2->fetch_assoc()) {
+    $bookings[] = $row;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -186,6 +196,10 @@ if (!isset($_SESSION['id'])) {
                         </div>
                         <div class="calendar-body" id="calendarBody">
                         </div>
+                        <div id="bookingDetails" style="display: none;">
+                            <div id="bookingDetailsContent"></div>
+                            <button onclick="closeBookingDetails()">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -199,12 +213,9 @@ if (!isset($_SESSION['id'])) {
     </div>
 
     <script>
-        const bookings = [
-            { start: '2024-05-05', end: '2024-05-07', type: 'Deluxe', name: 'John Doe' },
-            { start: '2024-05-10', end: '2024-05-12', type: 'Premium', name: 'Jane Smith' }
-            // Add more booking data here
-        ];
-
+        // Embed PHP booking data as JSON
+        const bookings = <?php echo json_encode($bookings); ?>;
+        
         // Function to generate calendar days
         function generateCalendar(month, year) {
             const calendarBody = document.getElementById('calendarBody');
@@ -218,8 +229,8 @@ if (!isset($_SESSION['id'])) {
 
                 // Check if there are bookings on this date
                 const booking = bookings.find(booking => {
-                    const startDate = new Date(booking.start);
-                    const endDate = new Date(booking.end);
+                    const startDate = new Date(booking.check_in);
+                    const endDate = new Date(booking.check_out);
                     return startDate.getDate() <= i && i <= endDate.getDate() &&
                         startDate.getMonth() === month && endDate.getMonth() === month &&
                         startDate.getFullYear() === year && endDate.getFullYear() === year;
@@ -229,14 +240,14 @@ if (!isset($_SESSION['id'])) {
                     dayCell.classList.add('booking');
                     const bookingIndicator = document.createElement('div');
                     bookingIndicator.classList.add('booking-indicator');
-                    const startDate = new Date(booking.start);
-                    const endDate = new Date(booking.end);
+                    const startDate = new Date(booking.check_in);
+                    const endDate = new Date(booking.check_out);
                     const duration = (endDate.getDate() - startDate.getDate()) + 1;
                     const indicatorHeight = (100 / daysInMonth) * duration;
                     bookingIndicator.style.height = `${indicatorHeight}%`;
                     dayCell.appendChild(bookingIndicator);
                     // Add hover functionality to show booking details
-                    dayCell.title = `${booking.name} (${booking.type})`;
+                    dayCell.title = `${booking.name} (${booking.room_type})`;
                 }
 
                 dayCell.addEventListener('click', () => {
@@ -252,7 +263,7 @@ if (!isset($_SESSION['id'])) {
         // Display booking details in a popup
         function displayBookingDetails(booking) {
             const bookingDetailsContent = document.getElementById('bookingDetailsContent');
-            bookingDetailsContent.innerHTML = `<p>Name: ${booking.name}</p><p>Type: ${booking.type}</p>`;
+            bookingDetailsContent.innerHTML = `<p>Name: ${booking.name}</p><p>Type: ${booking.room_type}</p>`;
             document.getElementById('bookingDetails').style.display = 'block';
         }
 
