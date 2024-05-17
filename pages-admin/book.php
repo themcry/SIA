@@ -115,16 +115,15 @@ if (!isset($_SESSION['id'])) {
                 </div>
             </div>
             <ul class="sidebar-nav">
-                <li class="sidebar-item" class="nav-link active">
-                    <a href="../pages-admin/Dashboard.php" class="sidebar-link">
+                <li class="sidebar-item">
+                    <a href="../pages-admin/Dashboard.php" class="sidebar-link active">
                         <i class="lni lni-grid-alt"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#front" aria-expanded="false" aria-controls="front">
-                        <i class="material-symbols-outlined"> desk </i>
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#front" aria-expanded="false">
+                        <i class="material-symbols-outlined">desk</i>
                         <span>Front-Desk</span>
                     </a>
                     <ul id="front" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
@@ -137,8 +136,7 @@ if (!isset($_SESSION['id'])) {
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#back" aria-expanded="false" aria-controls="back">
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#back" aria-expanded="false">
                         <i class="material-symbols-outlined">support_agent</i>
                         <span>Back-Office</span>
                     </a>
@@ -152,10 +150,9 @@ if (!isset($_SESSION['id'])) {
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#inventory" aria-expanded="false" aria-controls="inventory">
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#inventory" aria-expanded="false">
                         <i class="material-symbols-outlined">inventory</i>
-                        <span>inventory</span>
+                        <span>Inventory</span>
                     </a>
                     <ul id="inventory" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
@@ -163,22 +160,16 @@ if (!isset($_SESSION['id'])) {
                         </li>
                     </ul>
                 </li>
-                
             </ul>
             <div class="sidebar-footer">
-            <a href="#" data-toggle="modal" data-target="#myModal" class="sidebar-link" >
-                        <i class="lni lni-cog" onclick="openNav()"></i>
-                        <span>Settings</span>
-                        <div id="mySidebar" class="sidebar">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#manageAccountsModal">Manage Accounts</button>
-<!-- The Modal -->
-</div>
-
-<a href="#" class="sidebar-link" data-toggle="modal" data-target="#logoutModal">
-    <i class="lni lni-exit"></i>
-    <span>Logout</span>
-</a>
+                <a href="#" class="sidebar-link" data-bs-toggle="modal" data-bs-target="#manageAccountsModal">
+                    <i class="lni lni-cog"></i>
+                    <span>Settings</span>
+                </a>
+                <a href="#" class="sidebar-link" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                    <i class="lni lni-exit"></i>
+                    <span>Logout</span>
+                </a>
             </div>
         </aside>
 
@@ -470,13 +461,9 @@ if (isset($_GET['success'])) {
 
 
 <script>
-function openNav() {
-  document.getElementById("mySidebar").style.width = "250px";
-}
-
-function closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
-}
+function deleteAccount(id) {
+            window.location.href = "../functions/delete-account.php?id="+id;
+        }
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

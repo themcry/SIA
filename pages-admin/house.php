@@ -558,13 +558,9 @@ $result2 = $conn->query($query2);
 
 
 <script>
-function openNav() {
-  document.getElementById("mySidebar").style.width = "250px";
-}
-
-function closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
-}
+function deleteAccount(id) {
+            window.location.href = "../functions/delete-account.php?id="+id;
+        }
 </script>
                         </body>
                         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
