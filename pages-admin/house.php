@@ -163,7 +163,7 @@ $result2 = $conn->query($query2);
                                                             <table class="table table-custom">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th>Task ID</th>
+                                                                     
                                                                         <th>Room No.</th>
                                                                         <th>Room Status</th>
                                                                         <th>Task Type</th>
@@ -188,7 +188,7 @@ $result2 = $conn->query($query2);
                                                                     ?>
                                                                     <tr>
                                                                         <td><?php echo $row['task_id']?></td>
-                                                                        <td><?php echo $row['room_no']?></td>
+                                                                     
                                                                         <td><?php echo $row['room_status']?></td>
                                                                         <td><?php echo $row['task_type']?></td>
                                                                         <td><?php echo $row['description']?></td>
@@ -227,7 +227,7 @@ $result2 = $conn->query($query2);
                                                 <label for="roomstatus" class="form-label">Room No</label>
                                                     <select class="form-select" id="roomStatus" name="room_no">
                                                     <?php  while($row1 = $result1->fetch_assoc()) {?>
-                                                        <option value="<?php echo $row1["room_no"]?>"><?php echo $row1["room_no"]?></option>
+                                                        <option value="<?php echo $row1["room_id"]?>"><?php echo $row1["room_id"]?></option>
                                                         <?php }?>
                                                     </select>
                                                 </div>
@@ -282,7 +282,7 @@ $result2 = $conn->query($query2);
                                                         while($row3 = $result3->fetch_assoc()) {
                                                         ?>
                                     
-                                                        <option value="<?php echo $row3["room_no"]?>"><?php echo $row3["room_no"]?></option>
+                                                        <option value="<?php echo $row3["room_id"]?>"><?php echo $row3["room_id"]?></option>
                                                         <?php }?>
                                                     </select>
 

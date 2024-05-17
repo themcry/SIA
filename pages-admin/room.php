@@ -195,10 +195,10 @@ $result = $conn->query($query);
                                                     <div class="modal-body">
                                                     <form method="post" action="../functions/room.php">
 
-                                                    <div class="mb-3">
+                                                    <!-- <div class="mb-3">
                                                         <label class="form-label">Room Number</label>
                                                         <input type="text" class="form-control" name="room_no">
-                                                    </div>
+                                                    </div> -->
 
                                                     <div class="mb-3">
                                                     <select class="form-select" aria-label="Default select example" name="room_type">
@@ -240,9 +240,9 @@ $result = $conn->query($query);
                                     ?>
                                 
                                     <div class="room">
-                                        <h2><?php echo $row['room_no']?></h2>
-                                        <p>Status: <span id="status01" class="status-clean">Clean</span></p>
-                                        <button onclick="updateStatus('01')">Toggle Status</button>
+                                        <h2><?php echo $row['room_id']?></h2>
+                                        <p>Status: <span id="status<?php echo $row['room_id']; ?>" class="status-clean">Clean</span></p>
+                                        <button onclick="updateStatus('<?php echo $row['room_id']; ?>')">Toggle Status</button>
                                     </div>
 
                                     <?php 
