@@ -221,8 +221,8 @@ while($row3 = $result1->fetch_assoc()) {
                         <div class="mb-3">
                         <label for="roomstatus" class="form-label">Room Type:</label>
                             <select class="form-select" id="roomStatus" name="room_id">
-                                <?php  while($row1 = $result1->fetch_assoc()) {?>
-                                <option value="<?php echo $row1["room_id"]?>"><?php echo $row1["room_type"]?></option>
+                                <?php  foreach($array as $row3) {?>
+                                <option value="<?php echo $row3["room_id"]?>"><?php echo $row3["room_type"]?></option>
                                 <?php }?>
                             </select>
                         </div>
