@@ -241,14 +241,6 @@ if (!isset($_SESSION['id'])) {
         }
         });
 
-
-        function openNav() {
-            document.getElementById("mySidebar").style.width = "250px";
-        }
-
-        function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-        }
         function deleteAccount(id) {
             window.location.href = "../functions/delete-account.php?id="+id;
         }
