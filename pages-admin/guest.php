@@ -337,6 +337,10 @@ while($row3 = $result1->fetch_assoc()) {
                   <td><?php echo $row['room_type']; ?></td>
                 </tr>
                 <tr>
+                  <th>Room ID</th>
+                  <td><?php echo $row['room_id']; ?></td>
+                </tr>
+                <tr>
                   <th>Total</th>
                   <td><?php echo $row['price']; ?></td>
                 </tr>
