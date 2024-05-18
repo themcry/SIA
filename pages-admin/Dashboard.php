@@ -184,25 +184,7 @@ if (!isset($_SESSION['id'])) {
                                 </div>
                             </div>
                         </div>
-                        <!-- Bar Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <div class="card-header bg-transparent py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Sales Revenue</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="chart-bar">
-                                        <canvas id="salesRevenueChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Content Row -->
-                </div>
-                <!-- /.container-fluid -->
-            </div>
-        </div>
+                       
     </main>
     <?php include('modals-for-admin.php'); ?>
     <!-- jQuery (required for Bootstrap) -->
