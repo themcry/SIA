@@ -1,5 +1,6 @@
 <?php
 session_start(); 
+require_once('../classes/db_connection.php');
 
 if (!isset($_SESSION['id'])) {
   header('Location: ../index.php');
@@ -33,16 +34,15 @@ if (!isset($_SESSION['id'])) {
                 </div>
             </div>
             <ul class="sidebar-nav">
-                <li class="sidebar-item" class="nav-link active">
-                    <a href="../pages-admin/Dashboard.php" class="sidebar-link">
+                <li class="sidebar-item">
+                    <a href="../pages-admin/Dashboard.php" class="sidebar-link active">
                         <i class="lni lni-grid-alt"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#front" aria-expanded="false" aria-controls="front">
-                        <i class="material-symbols-outlined"> desk </i>
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#front" aria-expanded="false">
+                        <i class="material-symbols-outlined">desk</i>
                         <span>Front-Desk</span>
                     </a>
                     <ul id="front" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
@@ -55,8 +55,7 @@ if (!isset($_SESSION['id'])) {
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#back" aria-expanded="false" aria-controls="back">
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#back" aria-expanded="false">
                         <i class="material-symbols-outlined">support_agent</i>
                         <span>Back-Office</span>
                     </a>
@@ -70,10 +69,9 @@ if (!isset($_SESSION['id'])) {
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#inventory" aria-expanded="false" aria-controls="inventory">
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#inventory" aria-expanded="false">
                         <i class="material-symbols-outlined">inventory</i>
-                        <span>inventory</span>
+                        <span>Inventory</span>
                     </a>
                     <ul id="inventory" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
@@ -81,24 +79,19 @@ if (!isset($_SESSION['id'])) {
                         </li>
                     </ul>
                 </li>
-                
             </ul>
             <div class="sidebar-footer">
-            <a href="#" data-toggle="modal" data-target="#myModal" class="sidebar-link" >
-                        <i class="lni lni-cog" onclick="openNav()"></i>
-                        <span>Settings</span>
-                        <div id="mySidebar" class="sidebar">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#manageAccountsModal">Manage Accounts</button>
-<!-- The Modal -->
-</div>
-
-<a href="#" class="sidebar-link" data-toggle="modal" data-target="#logoutModal">
-    <i class="lni lni-exit"></i>
-    <span>Logout</span>
-</a>
+                <a href="#" class="sidebar-link" data-bs-toggle="modal" data-bs-target="#manageAccountsModal">
+                    <i class="lni lni-cog"></i>
+                    <span>Settings</span>
+                </a>
+                <a href="#" class="sidebar-link" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                    <i class="lni lni-exit"></i>
+                    <span>Logout</span>
+                </a>
             </div>
         </aside>
+
         <main>
             <div class="container-fluid p-3">
 
@@ -128,8 +121,6 @@ if (!isset($_SESSION['id'])) {
                                     <input type="text" class="form-control" id="searchInput" placeholder="Search...">
                                 </div>
                                 <?php
-                                require_once('../classes/db_connection.php');
-                                // Assuming you have a database connection established
                                 $query = "SELECT * FROM supply";
                                 $result = mysqli_query($conn, $query);
                                 ?>
@@ -155,7 +146,7 @@ if (!isset($_SESSION['id'])) {
                                                 <td>' . $row['avail_qty'] . '</td>
                                                 <td>
                                                     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editSupplyModal'.$row['id'].'">Edit</button>
-                                                    <button href="" class="btn btn-danger btn-sm" type="button">Delete</button>
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal">Delete</button>
                                                 </td>
                                             </tr>';
 
@@ -185,7 +176,7 @@ if (!isset($_SESSION['id'])) {
                                             <label for="availableQuantity" class="form-label">Available Quantity</label>
                                             <input type="number" class="form-control" id="availableQuantity" name="avail_qty" value="<?php echo $row['avail_qty'] ?>">
                                         </div>
-                                        <input type="hidden" name="supp_id" value="<?php echo $row['id'] ?>">
+                                        <input type="hidden" name="supp_id" value="<?php echo $row['supp_id'] ?>">
                                         <button type="submit" class="btn btn-primary">Update Supply</button>
                                     </form>
                                 </div>
@@ -241,184 +232,43 @@ if (!isset($_SESSION['id'])) {
                     </div>
 
 
-<!-- The Logout Modal -->
-<div class="modal fade" id="logoutModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Confirm Logout</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal Body -->
-      <div class="modal-body">
-        <p>Are you sure you want to logout?</p>
-      </div>
-
-      <!-- Modal Footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <a href="../functions/logout.php" class="btn btn-primary">Logout</a>
-      </div>
-
-    </div>
-  </div>
-</div>
-<!-- The Modal -->
-<div class="modal fade" id="manageAccountsModal" tabindex="-1" aria-labelledby="manageAccountsModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="manageAccountsModalLabel">Manage Accounts</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-            <form method="post" action="../functions/add_account.php">
-                <form id="addAccountForm" style="display: inline-flex; gap: 10px; flex-wrap: wrap;">
-                    <div class="form-group">
-                        <label for="username">Username:</label>
-                        <input type="text" class="form-control" id="username" name="username" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <div class="input-group">
-                        <input type="password" class="form-control" id="password" name="password" required>
-                        <span class="input-group-text bg-white border-start-0" id="togglePassword"><i class="fas fa-eye-slash"></i></span>
-                    </div>
-</div>
-                    <button type="submit" class="btn btn-success">Add Account</button>
-                </form>
-
-
-               <!-- List of existing accounts -->
-<h5 class="mt-4">Existing Accounts:</h5>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Username</th>
-            <th scope="col">Actions</th>
-        </tr>
-    </thead>
-    <tbody id="accountList">
-        <?php
-        require_once('../classes/db_connection.php');
-
-        $sql = "SELECT id, username FROM accounts";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<th scope='row'>" . $row["id"] . "</th>";
-                echo "<td>" . $row["username"] . "</td>";
-                echo "<td>";
-                echo "<button type='button' class='btn btn-primary edit-btn' id='editButton' data-bs-toggle='modal' data-bs-target='#editAccountModal'>";
-                echo "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-pencil-square' viewBox='0 0 16 16'>
-                        <path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z'/>
-                        <path fill-rule='evenodd' d='M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z'/>
-                    </svg>";
-                echo "</button>";                
-                echo "</button>";
-                echo "<button type='button' class='btn btn-danger delete-btn'>";
-                echo "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash-fill' viewBox='0 0 16 16'>
-                        <path d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0'/>
-                    </svg>";
-                echo "</button>";
-                echo "</td>";
-                echo "</tr>";
-            }
-        } else {
-            echo "<tr><td colspan='3'>No accounts found</td></tr>";
-        }
- $result->close();
-
- $conn->close();
- ?>
-</tbody>
-</table>
-            </div>
-        </div>
-    </div>
-</div>
-      </div>
-      </div>
-
-<!-- Edit Modal -->
-<div class="modal fade" id="editAccountModal" tabindex="-1" aria-labelledby="editAccountModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+          <!-- Delete Modal -->
+          <?php $statement = "SELECT * FROM supply";
+                                $result = mysqli_query($conn, $query);
+                                ?>
+                                <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editAccountModalLabel">Edit Account</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="modal-body">
-      <form method="POST" action="../functions/account.php">
-        <form id="editAccountForm">
-          <input type="hidden" id="editAccountId">
-          <div class="mb-3">
-            <label for="editUsername" class="form-label">Username</label>
-            <input type="text" class="form-control" id="editUsername" required>
-          </div>
-          <div class="mb-3">
-            <label for="editPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="editPassword" required>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="saveChangesBtn">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-    
-
-<!-- Delete Modal -->
-
-<div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <form method="POST" action="../functions/delete-account.php">
-                <h5 class="modal-title" id="deleteAccountModalLabel">Delete Account</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to delete this account?</p>
-                <form id="deleteAccountForm">
-                    <input type="hidden" id="delete-id" name="id">
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                </form>
-            </div>
+      <form method="post" action="../functions/delete_supply.php">
+        <div class="modal-body">
+          Are you sure you want to delete this record?
+          
         </div>
-    </div>
-</div>
-
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <input type="hidden" name="supp_id" id="supp_id" value="<?php echo $row['id'] ?>">
+          <button type="submit" class="btn btn-danger" onclick="confirmDelete(<?php echo $row['id'] ?>)">Delete</button>
+        </div>
+      </form>
     </div>
   </div>
+  <?php } ?>
+</div>
+</div>
 </div>
 
 
 
-<script>
-function openNav() {
-  document.getElementById("mySidebar").style.width = "250px";
-}
+                    <?php include('modals-for-admin.php'); ?>
 
-function closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
-}
-</script>
+
                         <!-- script for search -->
                         <script>
                             document.addEventListener('DOMContentLoaded', function() {
@@ -447,6 +297,13 @@ function closeNav() {
                                 });
                             });
                         </script>
+                        <script>
+        function deleteAccount(id) {
+            window.location.href = "../functions/delete-account.php?id="+id;
+        }
+
+
+    </script>
                         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
                         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

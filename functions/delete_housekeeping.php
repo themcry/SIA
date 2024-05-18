@@ -9,15 +9,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param('i', $task_id); 
 
     if ($stmt->execute()) {
-        echo 'Record deleted successfully';
+        header('Location: ../pages-admin/house.php?status=deleted');
+        exit();
     } else {
-        echo 'Error deleting record: ' . $stmt->error;
+        header("Location: ../pages-admin/house.php?error=error");
+        exit();
     }
 
-    $stmt->close();
-    $conn->close();
 
-    header('Location: ../pages-admin/house.php');
-    exit();
+
 }
 ?>

@@ -318,35 +318,8 @@ function deleteAccount(id) {
         crossorigin="anonymous"></script>
     <script src="../assets/js/1.js"></script>
     <script>
-$(document).ready(function(){
-    // Add a click event listener to the document and delegate it to the edit and delete buttons
-    $(document).on('click', '.edit-btn', function(){
-        // Find the closest row containing the edit button
-        var row = $(this).closest("tr");
-        // Extract the data from the row
-        var id = row.find(".id").text();
-        var username = row.find(".username").text();
-        // Set the values in the edit modal
-        $("#editAccountId").val(id);
-        $("#editUsername").val(username);
-        // Show the edit modal
-        $("#editAccountModal").modal('show');
-    });
 
-    // Add a click event listener to the delete button with class 'delete-btn'
-$(".delete-btn").click(function(){
-    // Find the closest row containing the delete button
-    var row = $(this).closest("tr");
-    // Extract the data from the row
-    var id = row.find(".id").text();
-    
-    // Set the value of the hidden input field with the account ID
-    $("#delete-id").val(id);
-    
-    // Show the delete modal
-    $("#deleteAccountModal").modal('show');
-});
-});
+  
 
 </script>
 </body>
