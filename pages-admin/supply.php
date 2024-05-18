@@ -113,137 +113,132 @@ if (!isset($_SESSION['id'])) {
 
                         </div>
                         <main>
-                            <div class="container-fluid p-3">
-                                <div class="card bg-transparent border-0">
-                                    <div class="card-body">
-                                        <div class="containers">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="card">
-                                                        <div class="card-header">
-                                                            <p class="h5 mb-0 font-weight-bold text-gray-800"><i class="lni lni-package me-3"></i>Supply</p>
-                                                            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#addSupplyModal">Add Supply</button>
-                                                        </div>
-                                                        <div class="input-group" style="max-width: 350px; padding: 10px;">
-                                                                <input type="text" class="form-control" id="searchInput" placeholder="Search...">
-                                                            </div>
-                                                        <table class="supply-table">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Supply ID</th>
-                                                                    <th>Supply Name</th>
-                                                                    <th>Quantity</th>
-                                                                    <th>Unit Price</th>
-                                                                    <th>Available Quantity</th>
-                                                                    <th>Actions</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>101</td>
-                                                                    <td>Bath Towels</td>
-                                                                    <td>100</td>
-                                                                    <td>P300.00</td>
-                                                                    <td>80</td>
-                                                                    <td>
-                                                                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editSupplyModal">Edit</button>
-                                                                        <button href="" class="btn btn-danger btn-sm" type="button">Delete</button>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>102</td>
-                                                                    <td>Bed Sheets</td>
-                                                                    <td>200</td>
-                                                                    <td>P800.50</td>
-                                                                    <td>150</td>
-                                                                    <td>
-                                                                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editSupplyModal">Edit</button>
-                                                                        <button href="" class="btn btn-danger btn-sm" type="button">Delete</button>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>103</td>
-                                                                    <td>Pillows</td>
-                                                                    <td>50</td>
-                                                                    <td>P150.00</td>
-                                                                    <td>45</td>
-                                                                    <td>
-                                                                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editSupplyModal">Edit</button>
-                                                                        <button href="" class="btn btn-danger btn-sm" type="button">Delete</button>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                        </main>
+    <div class="container-fluid p-3">
+        <div class="card bg-transparent border-0">
+            <div class="card-body">
+                <div class="containers">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <p class="h5 mb-0 font-weight-bold text-gray-800"><i class="lni lni-package me-3"></i>Supply</p>
+                                    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#addSupplyModal">Add Supply</button>
+                                </div>
+                                <div class="input-group" style="max-width: 350px; padding: 10px;">
+                                    <input type="text" class="form-control" id="searchInput" placeholder="Search...">
+                                </div>
+                                <?php
+                                require_once('../classes/db_connection.php');
+                                // Assuming you have a database connection established
+                                $query = "SELECT * FROM supply";
+                                $result = mysqli_query($conn, $query);
+                                ?>
+                                <table class="supply-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Supply ID</th>
+                                            <th>Supply Name</th>
+                                            <th>Quantity</th>
+                                            <th>Unit Price</th>
+                                            <th>Available Quantity</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            echo '<tr>
+                                                <td>' . $row['id'] . '</td>
+                                                <td>' . $row['supp_name'] . '</td>
+                                                <td>' . $row['quantity'] . '</td>
+                                                <td>' . $row['unit_price'] . '</td>
+                                                <td>' . $row['avail_qty'] . '</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editSupplyModal'.$row['id'].'">Edit</button>
+                                                    <button href="" class="btn btn-danger btn-sm" type="button">Delete</button>
+                                                </td>
+                                            </tr>';
+
+                                            ?>
+                                            <div class="modal fade" id="editSupplyModal<?php echo $row['id'] ?>" tabindex="-1" aria-labelledby="editSupplyModalLabel<?php echo $row['id'] ?>" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editSupplyModalLabel<?php echo $row['id'] ?>">Edit Supply</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                    <form method="post" action="../functions/edit_supply.php">
+                                        <div class="mb-3">
+                                            <label for="supplyName" class="form-label">Supply Name</label>
+                                            <input type="text" class="form-control" id="supplyName" name="supp_name" value="<?php echo $row['supp_name'] ?>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="quantity" class="form-label">Quantity</label>
+                                            <input type="number" class="form-control" id="quantity" name="quantity" value="<?php echo $row['quantity'] ?>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="unitPrice" class="form-label">Unit Price</label>
+                                            <input type="text" class="form-control" id="unitPrice" name="unit_price" value="<?php echo $row['unit_price'] ?>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="availableQuantity" class="form-label">Available Quantity</label>
+                                            <input type="number" class="form-control" id="availableQuantity" name="avail_qty" value="<?php echo $row['avail_qty'] ?>">
+                                        </div>
+                                        <input type="hidden" name="supp_id" value="<?php echo $row['id'] ?>">
+                                        <button type="submit" class="btn btn-primary">Update Supply</button>
+                                    </form>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                                            
+                                            <?php 
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
                         <!-- Add Supply Modal -->
                         <div class="modal fade" id="addSupplyModal" tabindex="-1" aria-labelledby="addSupplyModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="addSupplyModalLabel">Add Supply</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form>
-                                            <div class="mb-3">
-                                                <label for="supplyName" class="form-label">Supply Name</label>
-                                                <input type="text" class="form-control" id="supplyName">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="quantity" class="form-label">Quantity</label>
-                                                <input type="number" class="form-control" id="quantity">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="unitPrice" class="form-label">Unit Price</label>
-                                                <input type="text" class="form-control" id="unitPrice">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="availableQuantity" class="form-label">Available Quantity</label>
-                                                <input type="number" class="form-control" id="availableQuantity">
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">Add Supply</button>
-                                        </form>
-                                    </div>
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addSupplyModalLabel">Add Supply</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="post" action="../functions/add_supply.php">
+                                        <div class="mb-3">
+                                            <label for="supplyName" class="form-label">Supply Name</label>
+                                            <input type="text" class="form-control" id="supplyName" name="supp_name">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="quantity" class="form-label">Quantity</label>
+                                            <input type="number" class="form-control" id="quantity" name="quantity">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="unitPrice" class="form-label">Unit Price</label>
+                                            <input type="text" class="form-control" id="unitPrice" name="unit_price">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="availableQuantity" class="form-label">Available Quantity</label>
+                                            <input type="number" class="form-control" id="availableQuantity" name="avail_qty">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Add Supply</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Edit Supply Modal -->
-                        <div class="modal fade" id="editSupplyModal" tabindex="-1" aria-labelledby="editSupplyModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="editSupplyModalLabel">Edit Supply</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form>
-                                            <div class="mb-3">
-                                                <label for="editSupplyName" class="form-label">Supply Name</label>
-                                                <input type="text" class="form-control" id="editSupplyName">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="editQuantity" class="form-label">Quantity</label>
-                                                <input type="number" class="form-control" id="editQuantity">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="editUnitPrice" class="form-label">Unit Price</label>
-                                                <input type="text" class="form-control" id="editUnitPrice">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="editAvailableQuantity" class="form-label">Available Quantity</label>
-                                                <input type="number" class="form-control" id="editAvailableQuantity">
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">Save Changes</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
 
 
 <!-- The Logout Modal -->
