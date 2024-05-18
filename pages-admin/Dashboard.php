@@ -225,7 +225,7 @@ if ($result->num_rows > 0) {
                         <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
                                 <div class="card-header bg-transparent py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Guest Arrival Trends</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Total Booking of Year/Month</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="chart-area">
