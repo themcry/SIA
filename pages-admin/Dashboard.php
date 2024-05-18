@@ -109,64 +109,114 @@ if (!isset($_SESSION['id'])) {
                     </div>
                     <!-- Content Row -->
                     <div class="row g-2">
-                        <!-- Today Booking Card -->
-                        <div class="card-column mb-2">
-                            <div class="card border-0 border-4 border-start border-primary shadow h-100 py-2 bg-primary">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-s font-weight-bold text-white text-uppercase mb-1">Today Booking</div>
-                                            <div class="h1 mb-0 font-weight-bold text-white">5</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-book-half" viewBox="0 0 16 16">
-                                                <path d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"/>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                    <?php
+// Get today's date in the format yyyy-mm-dd
+$today_date = date("Y-m-d");
+
+// Query to get today's bookings
+$query = "SELECT COUNT(*) AS today_bookings_count FROM Bookings WHERE DATE(check_in) = '$today_date'";
+$result = $conn->query($query);
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $today_bookings_count = $row['today_bookings_count'];
+} else {
+    $today_bookings_count = 0;
+}
+?>
+<!-- Today Booking Card -->
+<div class="card-column mb-2">
+    <div class="card border-0 border-4 border-start border-primary shadow h-100 py-2 bg-primary">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-s font-weight-bold text-white text-uppercase mb-1">Today Booking</div>
+                    <div class="h1 mb-0 font-weight-bold text-white"><?php echo $today_bookings_count; ?></div>
+                </div>
+                <div class="col-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-book-half" viewBox="0 0 16 16">
+                        <path d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+           <!-- Vacant Room Card -->
+<?php 
+$query = "SELECT COUNT(*) AS vacant_rooms_count FROM room";
+$result = $conn->query($query);
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $vacant_rooms_count = $row['vacant_rooms_count'];
+} else {
+    $vacant_rooms_count = 0;
+}
+?>
+<div class="card-column mb-2">
+    <div class="card border-0 border-4 border-start border-info shadow h-100 py-2 bg-info">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-small font-weight-bold text-white text-uppercase mb-1">Vacant Room</div>
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <div class="h1 mb-0 mr-3 font-weight-bold text-white"><?php echo $vacant_rooms_count; ?></div> <!-- Display the vacant rooms count here -->
                         </div>
-                        <!-- Vacant Room Card -->
-                        <div class="card-column mb-2">
-                            <div class="card border-0 border-4 border-start border-info shadow h-100 py-2 bg-info">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-small font-weight-bold text-white text-uppercase mb-1">Vacant Room</div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h1 mb-0 mr-3 font-weight-bold text-white">10</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto align-items-center mt-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-segmented-nav" viewBox="0 0 16 16">
-                                                <path d="M0 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm6 3h4V5H6zm9-1V6a1 1 0 0 0-1-1h-3v4h3a1 1 0 0 0 1-1"/>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Total Bookings Card -->
-                        <div class="card-column mb-2">
-                            <div class="card border-0 border-4 border-start border-warning shadow h-100 py-2 bg-warning">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-small font-weight-bold text-white text-uppercase mb-1">Total Bookings</div>
-                                            <div class="h1 mb-0 font-weight-bold text-white">35</div>
-                                        </div>
-                                        <div class="col-auto align-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-layers-half" viewBox="0 0 16 16">
-                                                <path d="M8 0a.5.5 0 0 0-.252.066l-7 4a.5.5 0 0 0 0 .868l7 4a.5.5 0 0 0 .504 0l7-4a.5.5 0 0 0 0-.868l-7-4A.5.5 0 0 0 8 0zm6.752 4L8 7.467 1.248 4 8 .533 14.752 4zM.045 8.768a.5.5 0 0 1 .682-.183L8 12.199l7.273-3.614a.5.5 0 1 1 .499.864l-7.5 3.75a.5.5 0 0 1-.473 0l-7.5-3.75a.5.5 0 0 1-.183-.682z"/>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                </div>
+                <div class="col-auto align-items-center mt-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-segmented-nav" viewBox="0 0 16 16">
+                        <path d="M0 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm6 3h4V5H6zm9-1V6a1 1 0 0 0-1-1h-3v4h3a1 1 0 0 0 1-1"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+           <!-- Query to get the total number of bookings -->
+<?php 
+$query = "SELECT COUNT(*) as total_bookings FROM Bookings";
+$result = $conn->query($query); 
+
+if ($result->num_rows > 0) {
+    // Fetch the total bookings count
+    $row = $result->fetch_assoc();
+    $total_bookings = $row['total_bookings'];
+} else {
+    $total_bookings = 0;
+}
+?>
+
+<!-- Total Bookings Card -->
+<div class="card-column mb-2">
+    <div class="card border-0 border-4 border-start border-warning shadow h-100 py-2 bg-warning">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-small font-weight-bold text-white text-uppercase mb-1">Total Bookings</div>
+                    <div class="h1 mb-0 font-weight-bold text-white"><?php echo $total_bookings; ?></div>
+                </div>
+                <div class="col-auto align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-layers-half" viewBox="0 0 16 16">
+                        <path d="M8 0a.5.5 0 0 0-.252.066l-7 4a.5.5 0 0 0 0 .868l7 4a.5.5 0 0 0 .504 0l7-4a.5.5 0 0 0 0-.868l-7-4A.5.5 0 0 0 8 0zm6.752 4L8 7.467 1.248 4 8 .533 14.752 4zM.045 8.768a.5.5 0 0 1 .682-.183L8 12.199l7.273-3.614a.5.5 0 1 1 .499.864l-7.5 3.75a.5.5 0 0 1-.473 0l-7.5-3.75a.5.5 0 0 1-.183-.682z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
                         
                     </div>
                     <!-- Content Row -->
@@ -179,7 +229,7 @@ if (!isset($_SESSION['id'])) {
                                 </div>
                                 <div class="card-body">
                                     <div class="chart-area">
-                                        <canvas id="myChart"></canvas>
+                                    <canvas id="monthlyBookingsChart" width="400" height="200"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -202,26 +252,65 @@ if (!isset($_SESSION['id'])) {
     <script src="../assets/js/1.js"></script>
 
     <script>
-        const ctx = document.getElementById('myChart');
+    // Function to fetch data from PHP script
+    async function fetchMonthlyBookingData() {
+        const response = await fetch('../functions/get_booking_data.php');
+        const data = await response.json();
+        return data;
+    }
 
+    // Function to create chart
+    async function createChart() {
+        // Fetch data
+        const monthlyBookingData = await fetchMonthlyBookingData();
+
+        // Get canvas element
+        const ctx = document.getElementById('monthlyBookingsChart').getContext('2d');
+
+        // Create chart
         new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-            datasets: [{
-            label: '# of Bookings',
-            data: [12, 19, 3, 5, 2, 3, 6, 7, 8,14,17,15],
-            borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-            y: {
-                beginAtZero: true
+            type: 'bar',
+            data: {
+                labels: Object.keys(monthlyBookingData), // Month names
+                datasets: [{
+                    label: 'Total Bookings',
+                    data: Object.values(monthlyBookingData), // Total bookings count
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)', // Bar color
+                    borderColor: 'rgba(54, 162, 235, 1)', // Border color
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                var label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += context.parsed.y.toLocaleString();
+                                }
+                                return label;
+                            },
+                            title: function(context) {
+                                return context.dataset.label || '';
+                            }
+                        }
+                    }
+                }
             }
-            }
-        }
         });
+    }
+
+    // Call createChart function when the page is loaded
+    document.addEventListener('DOMContentLoaded', createChart);
 
         function deleteAccount(id) {
             window.location.href = "../functions/delete-account.php?id="+id;
