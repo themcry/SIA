@@ -191,26 +191,28 @@ while($row3 = $result1->fetch_assoc()) {
                                 <h6>Room Type</h6>
                                 <p><?php echo $row['room_type']; ?></p>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h1>Booking Summary</h1>
-                                <div class="row">
-                            <div class="col-md-6">
-                                <h3>Room Type</h3>
-                                <p><?php echo $row['room_type']; ?></p>
-                            </div>
-                            <div class="col-md-6">
-                                        <h3>Room ID</h3>
-                                        <p><?php echo $row['room_id']; ?></p>
-                            </div>
-                                    <div class="col-md-6">
-                                        <h2>Total</h2>
-                                        <?php while($row2 = $result2->fetch_assoc()){?>
-                                        <p><?php echo $row2['price']; ?></p>
-                                        <?php }?>
-                            </div>
-                                
+        <div class="row">
+            <form method="POST" action="../functions/updateprice.php">
+            <div class="col-md-12">
+                <h1>Booking Summary</h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Room Type</h3>
+                        <p><?php echo $row['room_type']; ?></p>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Room ID</h3>
+                        <p><?php echo $row['room_id']; ?></p>
+                    </div>
+                    <div class="col-md-6">
+                        <h2>Total</h2>
+                        <p><?php echo $row['price']; ?></p>
+                    </div>
+                </div>
+            </div>
+            <?php }?>
+    </form>
+        </div>
                             </div>
                         </div>
                     </div>
@@ -221,7 +223,6 @@ while($row3 = $result1->fetch_assoc()) {
             </div>
         </div>
     </div>
-<?php } ?>
 <!-- END Booking information -->
 
     <div class="modal fade" id="editGuestModal<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="addTaskModalLabel<?php echo $row['id']; ?>" aria-hidden="true">
@@ -240,7 +241,7 @@ while($row3 = $result1->fetch_assoc()) {
                         </div>
                         <div class="mb-3">
                         <label for="roomstatus" class="form-label">Room Type:</label>
-                            <select class="form-select" id="roomStatus" name="room_id" required>
+                            <select class="form-select" id="roomStatus" name="room_id" placeholder="Select Room Type" required>
                                 <?php  foreach($array as $row3) {?>
                                 <option value="<?php echo $row3["room_id"]?>"><?php echo $row3["room_type"]?></option>
                                 <?php }?>
