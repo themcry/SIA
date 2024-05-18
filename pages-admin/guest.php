@@ -106,11 +106,6 @@ while($row3 = $result1->fetch_assoc()) {
           <h2>Guest</h2>
           <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#addTaskModal">Add Task</button>
 
-
-
-
-
-
     
 <table class="table">
   <thead>
@@ -123,7 +118,6 @@ while($row3 = $result1->fetch_assoc()) {
       <th scope="col">Check Out</th>
       <th scope="col">Guest</th>
       <th scope="col">Status</th>
-      <th scope="col">Total</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -296,7 +290,8 @@ while($row3 = $result1->fetch_assoc()) {
     <?php }?>
 
     <!--Billing Modal -->
-<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <?php  while($row = $result1->fetch_assoc()) {?>
+<div class="modal fade" id="bookingModal<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -310,31 +305,27 @@ while($row3 = $result1->fetch_assoc()) {
           <div class="row">
             <div class="col-md-6">
               <h6>Guest</h6>
-              <p>John Doe</p>
+              <p><?php echo $row['name']; ?></p>
             </div>
             <div class="col-md-6">
               <h6>Book ID</h6>
-              <p>123456</p>
+              <p><?php echo $row['id']; ?></p>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <h6>Check in</h6>
-              <p>Sun, 24 Mar 2024</p>
+              <p><?php echo $row['check_in']; ?></p>
             </div>
             <div class="col-md-6">
               <h6>Check out</h6>
-              <p>Mon, 25 Mar 2024</p>
+              <p><?php echo $row['check_out']; ?></p>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <h6>Room Type</h6>
-              <p>Deluxe</p>
-            </div>
-            <div class="col-md-6">
-              <h6>Room No.</h6>
-              <p>Room 20</p>
+              <p><?php echo $row['room_type']; ?></p>
             </div>
           </div>
           <div class="row">
@@ -342,16 +333,12 @@ while($row3 = $result1->fetch_assoc()) {
               <h6>Booking Summary</h6>
               <table class="table table-bordered">
                 <tr>
-                  <th>Room Total (1 night)</th>
-                  <td>1000.00</td>
-                </tr>
-                <tr>
-                  <th>Sub Total</th>
-                  <td>1600.00</td>
+                  <th>Room Type</th>
+                  <td><?php echo $row['room_type']; ?></td>
                 </tr>
                 <tr>
                   <th>Total</th>
-                  <td>1440.00</td>
+                  <td><?php echo $row['price']; ?></td>
                 </tr>
               </table>
             </div>
@@ -364,6 +351,7 @@ while($row3 = $result1->fetch_assoc()) {
     </div>
   </div>
 </div>
+<?php }?>
 	<!-- END OF BILLING -->
 
 
