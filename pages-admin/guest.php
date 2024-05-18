@@ -138,7 +138,7 @@ while($row3 = $result1->fetch_assoc()) {
       <td><?php echo $row['check_out']; ?></td>
       <td><?php echo $row['guest']; ?> Person(s)</td>
       <td><?php echo $status; ?></td>
-      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bookingModal">
+      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bookingModal<?php echo $row['id']; ?>">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
@@ -152,6 +152,78 @@ while($row3 = $result1->fetch_assoc()) {
         </td>
     
     </tr>
+ 
+     <!-- Booking information -->
+
+        <div class="modal fade" id="bookingModal<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="bookingModalLabel<?php echo $row['id']; ?>" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookingModalLabel<?php echo $row['id']; ?>">Current Booking</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Guest</h6>
+                                <p><?php echo $row['name']; ?></p>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Book ID</h6>
+                                <p><?php echo $row['id']; ?></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Check in</h6>
+                                <p><?php echo $row['check_in']; ?></p>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Check out</h6>
+                                <p><?php echo $row['check_out']; ?></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Room Type</h6>
+                                <p><?php echo $row['room_type']; ?></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1>Booking Summary</h1>
+                                <div class="row">
+                            <div class="col-md-6">
+                                <h3>Room Type</h3>
+                                <p><?php echo $row['room_type']; ?></p>
+                            </div>
+                            <div class="col-md-6">
+                                        <h3>Room ID</h3>
+                                        <p><?php echo $row['room_id']; ?></p>
+                            </div>
+                                    <div class="col-md-6">
+                                        <h2>Total</h2>
+                                        <?php while($row2 = $result2->fetch_assoc()){?>
+                                        <p><?php echo $row2['price']; ?></p>
+                                        <?php }?>
+                            </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+<!-- END Booking information -->
+
     <div class="modal fade" id="editGuestModal<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="addTaskModalLabel<?php echo $row['id']; ?>" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -196,10 +268,10 @@ while($row3 = $result1->fetch_assoc()) {
             </div>
         </div>
                                 </div>
-    <?php } ?>
-  </tbody>
+    
 </table>
       </main>
+      
       <div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -243,6 +315,7 @@ while($row3 = $result1->fetch_assoc()) {
             </div>
         </div>
     </div>
+    
     <?php while($row2 = $result2->fetch_assoc()){?>
     <div class="modal fade" id="editGuestModal<?php echo $row2['id']; ?>" tabindex="-1" aria-labelledby="addTaskModalLabel<?php echo $row2['id']; ?>" aria-hidden="true">
         <div class="modal-dialog">
@@ -289,74 +362,6 @@ while($row3 = $result1->fetch_assoc()) {
     </div>
     <?php }?>
 
-    <!--Billing Modal -->
-    <?php  while($row = $result1->fetch_assoc()) {?>
-<div class="modal fade" id="bookingModal<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="bookingModalLabel">Current Booking</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-6">
-              <h6>Guest</h6>
-              <p><?php echo $row['name']; ?></p>
-            </div>
-            <div class="col-md-6">
-              <h6>Book ID</h6>
-              <p><?php echo $row['id']; ?></p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <h6>Check in</h6>
-              <p><?php echo $row['check_in']; ?></p>
-            </div>
-            <div class="col-md-6">
-              <h6>Check out</h6>
-              <p><?php echo $row['check_out']; ?></p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <h6>Room Type</h6>
-              <p><?php echo $row['room_type']; ?></p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <h6>Booking Summary</h6>
-              <table class="table table-bordered">
-                <tr>
-                  <th>Room Type</th>
-                  <td><?php echo $row['room_type']; ?></td>
-                </tr>
-                <tr>
-                  <th>Room ID</th>
-                  <td><?php echo $row['room_id']; ?></td>
-                </tr>
-                <tr>
-                  <th>Total</th>
-                  <td><?php echo $row['price']; ?></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-<?php }?>
-	<!-- END OF BILLING -->
 
 
     <?php include('modals-for-admin.php'); ?>
