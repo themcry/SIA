@@ -107,171 +107,161 @@ while($row3 = $result1->fetch_assoc()) {
           <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#addTaskModal">Add Task</button>
 
     
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Book ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">R.Type</th>
-      <th scope="col">No.</th>
-      <th scope="col">Check In</th>
-      <th scope="col">Check Out</th>
-      <th scope="col">Guest</th>
-      <th scope="col">Status</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-  <?php while($row = $result2->fetch_assoc()){ 
-        if($row['status'] == 0){
-            $status = "Reserved";
-        }else{
-            $status = "In House";
-        }
+          <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Room Type</th>
+            <th scope="col">Room ID</th>
+            <th scope="col">Check In</th>
+            <th scope="col">Check Out</th>
+            <th scope="col">Guests</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php while($row = $result2->fetch_assoc()) { 
+            $status = ($row['status'] == 0) ? "Reserved" : "In House";
         ?>
-    <tr>
-      <th scope="row"><?php echo $row['id']; ?></th>
-      <td><?php echo $row['name']; ?></td>
-      <td><?php echo $row['room_type']; ?></td>
-      <td><?php echo $row['room_id']; ?></td>
-      <td><?php echo $row['check_in']; ?></td>
-      <td><?php echo $row['check_out']; ?></td>
-      <td><?php echo $row['guest']; ?> Person(s)</td>
-      <td><?php echo $status; ?></td>
-      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bookingModal<?php echo $row['id']; ?>">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-        </svg></button>&nbsp;
-        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editGuestModal<?php echo $row['id'];?>">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-            </svg>
-        </button>
-        </td>
-    
-    </tr>
- 
-     <!-- Booking information -->
+        <tr>
+            <th scope="row"><?php echo $row['id']; ?></th>
+            <td><?php echo $row['name']; ?></td>
+            <td><?php echo $row['room_type']; ?></td>
+            <td><?php echo $row['room_id']; ?></td>
+            <td><?php echo $row['check_in']; ?></td>
+            <td><?php echo $row['check_out']; ?></td>
+            <td><?php echo $row['guest']; ?> Person(s)</td>
+            <td><?php echo $status; ?></td>
+            <td>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal<?php echo $row['id']; ?>">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                    </svg>
+                </button>&nbsp;
+                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editGuestModal<?php echo $row['id']; ?>">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                    </svg>
+                </button>
+            </td>
+        </tr>
 
-        <div class="modal fade" id="bookingModal<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="bookingModalLabel<?php echo $row['id']; ?>" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="bookingModalLabel<?php echo $row['id']; ?>">Current Booking</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h6>Guest</h6>
-                                <p><?php echo $row['name']; ?></p>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>Book ID</h6>
-                                <p><?php echo $row['id']; ?></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h6>Check in</h6>
-                                <p><?php echo $row['check_in']; ?></p>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>Check out</h6>
-                                <p><?php echo $row['check_out']; ?></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h6>Room Type</h6>
-                                <p><?php echo $row['room_type']; ?></p>
-                            </div>
-        <div class="row">
-            <form method="POST" action="../functions/updateprice.php">
-            <div class="col-md-12">
-                <h1>Booking Summary</h1>
-                <div class="row">
-                    <div class="col-md-6">
-                        <h3>Room Type</h3>
-                        <p><?php echo $row['room_type']; ?></p>
+        <!-- Booking Modal -->
+        <div class="modal fade" id="bookingModal<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="bookingModalLabel<?php echo $row['id']; ?>" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="bookingModalLabel<?php echo $row['id']; ?>">Current Booking</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="col-md-6">
-                        <h3>Room ID</h3>
-                        <p><?php echo $row['room_id']; ?></p>
-                    </div>
-                    <div class="col-md-6">
-                        <h2>Total</h2>
-                        <p><?php echo $row['price']; ?></p>
-                    </div>
-                </div>
-            </div>
-            <?php }?>
-    </form>
-        </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-<!-- END Booking information -->
-
-    <div class="modal fade" id="editGuestModal<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="addTaskModalLabel<?php echo $row['id']; ?>" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editGuestModalLabel<?php echo $row['id']; ?>">Edit Guest</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="post" action="../functions/edit-bookings.php">
-                        <input type="hidden" name="booking_id" value="<?php echo $row['id'] ?>">
-                        <div class="mb-3">
-                            <label for="taskdescription" class="form-label" >Name:</label>
-                            <input type="text" class="form-control" name="fullName" value="<?php echo $row['name'];?>" required>
-                        </div>
-                        <div class="mb-3">
-                        <label for="roomstatus" class="form-label">Room Type:</label>
-                            <select class="form-select" id="roomStatus" name="room_id" placeholder="Select Room Type" required>
-                                <?php  foreach($array as $row3) {?>
-                                <option value="<?php echo $row3["room_id"]?>"><?php echo $row3["room_type"]?></option>
-                                <?php }?>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="tasktype" class="form-label">Check In:</label>
-                            <input type="date" class="form-control" name="checkIn" value="<?php echo $row['check_in'] ?>" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="taskdescription" class="form-label" >Check Out:</label>
-                            <input type="date" class="form-control" name="checkOut" value="<?php echo $row['check_out'] ?>" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="taskdescription" class="form-label" >Guests:</label>
-                            <input type="number" class="form-control" name="guest" value="<?php echo $row['guest'];?>" required>
-                        </div>
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name="submit" class="btn btn-primary">Edit Guest</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>Guest</h6>
+                                    <p><?php echo $row['name']; ?></p>
                                 </div>
-    
+                                <div class="col-md-6">
+                                    <h6>Book ID</h6>
+                                    <p><?php echo $row['id']; ?></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>Check in</h6>
+                                    <p><?php echo $row['check_in']; ?></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>Check out</h6>
+                                    <p><?php echo $row['check_out']; ?></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>Room Type</h6>
+                                    <p><?php echo $row['room_type']; ?></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h6>Booking Summary</h6>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h2>Room Type</h2>
+                                            <p><?php echo $row['room_type']; ?></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h2>Room ID</h2>
+                                            <p><?php echo $row['room_id']; ?></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h2>Total</h2>
+                                            <p><?php echo $row['price']; ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Guest Modal -->
+        <div class="modal fade" id="editGuestModal<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="editGuestModalLabel<?php echo $row['id']; ?>" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editGuestModalLabel<?php echo $row['id']; ?>">Edit Guest</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="../functions/edit-bookings.php">
+                            <input type="hidden" name="booking_id" value="<?php echo $row['id']; ?>">
+                            <div class="mb-3">
+                                <label for="fullName" class="form-label">Name:</label>
+                                <input type="text" class="form-control" name="fullName" value="<?php echo $row['name']; ?>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="roomStatus" class="form-label">Room Type:</label>
+                                <select class="form-select" id="roomStatus<?php echo $row['id']; ?>" name="room_id" required>
+                                    <?php foreach($array as $row3) { ?>
+                                        <option value="<?php echo $row3["room_id"]; ?>" <?php if($row3["room_id"] == $row['room_id']) echo 'selected'; ?>><?php echo $row3["room_type"]; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="checkIn" class="form-label">Check In:</label>
+                                <input type="date" class="form-control" name="checkIn" value="<?php echo $row['check_in']; ?>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="checkOut" class="form-label">Check Out:</label>
+                                <input type="date" class="form-control" name="checkOut" value="<?php echo $row['check_out']; ?>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="guest" class="form-label">Guests:</label>
+                                <input type="number" class="form-control" name="guest" value="<?php echo $row['guest']; ?>" required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" name="submit" class="btn btn-primary">Edit Guest</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+    </tbody>
 </table>
-      </main>
+
       
       <div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
         <div class="modal-dialog">
