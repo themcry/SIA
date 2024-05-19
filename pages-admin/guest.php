@@ -188,18 +188,18 @@ while($row3 = $result1->fetch_assoc()) {
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h6>Booking Summary</h6>
+                                    <h2>Booking Summary</h2>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <h2>Room Type</h2>
+                                            <h4>Room Type</h4>
                                             <p><?php echo $row['room_type']; ?></p>
                                         </div>
                                         <div class="col-md-6">
-                                            <h2>Room ID</h2>
+                                            <h4>Room ID</h4>
                                             <p><?php echo $row['room_id']; ?></p>
                                         </div>
                                         <div class="col-md-6">
-                                            <h2>Total</h2>
+                                            <h4>Total</h4>
                                             <p><?php echo $row['price']; ?></p>
                                         </div>
                                     </div>
