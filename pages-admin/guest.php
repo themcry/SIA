@@ -302,11 +302,11 @@ while($row3 = $result1->fetch_assoc()) {
                     <form method="post" action="../functions/bookings.php">
                         <div class="mb-3">
                             <label for="taskdescription" class="form-label" >Name:</label>
-                            <input type="text" class="form-control" name="fullName">
+                            <input type="text" class="form-control" name="fullName" required>
                         </div>
                         <div class="mb-3">
                         <label for="roomstatus" class="form-label">Room Type:</label>
-                            <select class="form-select" id="roomStatus" name="room_id">
+                            <select class="form-select" id="roomStatus" name="room_id" required>
                                 <?php  foreach($array as $row3) {?>
                                 <option value="<?php echo $row3["room_id"]?>"><?php echo $row3["room_type"]?></option>
                                 <?php }?>
@@ -314,15 +314,15 @@ while($row3 = $result1->fetch_assoc()) {
                         </div>
                         <div class="mb-3">
                             <label for="tasktype" class="form-label">Check In:</label>
-                            <input type="date" class="form-control" name="checkIn">
+                            <input type="date" class="form-control" name="checkIn"  required>
                         </div>
                         <div class="mb-3">
                             <label for="taskdescription" class="form-label" >Check Out:</label>
-                            <input type="date" class="form-control" name="checkOut">
+                            <input type="date" class="form-control" name="checkOut" required>
                         </div>
                         <div class="mb-3">
                             <label for="taskdescription" class="form-label" >Guests:</label>
-                            <input type="number" class="form-control" name="guest">
+                            <input type="number" class="form-control" name="guest" required>
                         </div>
                     
                 </div>
