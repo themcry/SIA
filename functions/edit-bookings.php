@@ -3,11 +3,10 @@ require_once('../classes/db_connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $booking_id = $_POST['booking_id']; // Assume booking_id is passed in the POST request
+    $booking_id = $_POST['booking_id']; 
     $name = $_POST['fullName'];
     $room_id = $_POST['room_id'];
 
-    // Fetch room details
     $sql1 = "SELECT * FROM room WHERE room_id = '".$room_id."'";
     $result = $conn->query($sql1);
     $row = $result->fetch_assoc();
@@ -17,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $check_out = $_POST['checkOut'];
     $guest = $_POST['guest'];
 
-    // Update the booking record
     $sql = "UPDATE `Bookings` SET 
                 name = '$name', 
                 room_type = '$room_type', 
