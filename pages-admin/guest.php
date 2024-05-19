@@ -275,7 +275,7 @@ while($row3 = $result1->fetch_assoc()) {
                             </div>
                             <div class="mb-3">
                                 <label for="guest" class="form-label">Guests:</label>
-                                <input type="number" class="form-control" name="guest" value="<?php echo $row['guest']; ?>" required>
+                                <input type="number" min="1" class="form-control" name="guest" value="<?php echo $row['guest']; ?>" required>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -322,7 +322,7 @@ while($row3 = $result1->fetch_assoc()) {
                         </div>
                         <div class="mb-3">
                             <label for="taskdescription" class="form-label" >Guests:</label>
-                            <input type="number" class="form-control" name="guest" required>
+                            <input type="number" min="1" class="form-control" name="guest" required>
                         </div>
                     
                 </div>
