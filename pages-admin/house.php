@@ -158,7 +158,6 @@ $result2 = $conn->query($query2);
                                                             <table class="table table-custom">
                                                                 <thead>
                                                                     <tr>
-                                                                     
                                                                         <th>Room No.</th>
                                                                         <th>Room Status</th>
                                                                         <th>Task Type</th>
@@ -182,7 +181,7 @@ $result2 = $conn->query($query2);
                                                                         }
                                                                     ?>
                                                                     <tr>
-                                                                        <td><?php echo $row['task_id']?></td>
+                                                                        <td><?php echo $row['room_no']?></td>
                                                                      
                                                                         <td><?php echo $row['room_status']?></td>
                                                                         <td><?php echo $row['task_type']?></td>
@@ -258,7 +257,7 @@ $result2 = $conn->query($query2);
                             </div>
                             <!-- edit task modal -->
                             <?php  while($row2 = $result2->fetch_assoc()) {?>
-                            <div class="modal fade" id="editTaskModal<?php echo $row2['task_id'];?>" tabindex="-1" aria-labelledby="editTaskModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="editTaskModal<?php echo $row2['task_id'];?>" tabindex="-1" aria-labelledby="editTaskModalLabel<?php echo $row2['task_id']; ?>" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -270,18 +269,8 @@ $result2 = $conn->query($query2);
                                           
                                             <div class="mb-3">
                                                  
-                                                <label for="roomstatus" class="form-label">Room No</label>
-                                                    <select class="form-select" id="roomStatus" name="room_no">
-                                                        <?php $query3 = "SELECT * FROM room";
-                                                        $result3 = $conn->query($query3);
-                                                        while($row3 = $result3->fetch_assoc()) {
-                                                        ?>
-                                    
-                                                        <option value="<?php echo $row3["room_id"]?>"><?php echo $row3["room_id"]?></option>
-                                                        <?php }?>
-                                                    </select>
-
-                                              
+                                                <label for="roomstatus<?php echo $row2['task_id'];?>" class="form-label">Room No</label>
+                                                    <input type="text" class="form-control" id="roomStatus" name="room_no" value="<?php echo $row2['room_no']; ?>" readonly>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="roomstatus" class="form-label">Room Status</label>
@@ -300,8 +289,8 @@ $result2 = $conn->query($query2);
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="taskdescription" class="form-label" >Task Description</label>
-                                                    <textarea class="form-control" id="taskDescription" rows="3" name="description" value="<?php echo $row2['description']?>"></textarea>
+                                                    <label for="taskdescription<?php echo $row2['task_id']; ?>" class="form-label" >Task Description</label>
+                                                    <textarea class="form-control" id="taskDescription<?php echo $row2['task_id']; ?>" rows="3" name="description"><?php echo $row2['description']; ?></textarea>
                                                 </div>
                                                 <input type="hidden" id="editTaskId" value="<?php echo $row2["task_id"]?>"name="task_id">
                                              

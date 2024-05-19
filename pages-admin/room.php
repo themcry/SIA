@@ -7,7 +7,10 @@ if (!isset($_SESSION['id'])) {
   exit();
 }
 
-$query = "SELECT * FROM room";
+$query = "SELECT room.room_id, COALESCE(housekeeping.room_status, 'clean') AS room_status 
+          FROM (SELECT DISTINCT room_id FROM room) AS room 
+          LEFT JOIN housekeeping ON room.room_id = housekeeping.room_no
+          ORDER BY room.room_id";
 $result = $conn->query($query);
 ?>
 <!DOCTYPE html>
@@ -219,7 +222,7 @@ $result = $conn->query($query);
                                         </div>
 
 
-                                    </div>
+                                    </div><br><br>
 
 
                                 <div class="room-status">
@@ -227,13 +230,25 @@ $result = $conn->query($query);
                                     
                                     if ($result->num_rows > 0) {
                                         while($row = $result->fetch_assoc()) {
-                                        
+                                            
+                                            $statusClass = '';
+                                            $statusText = '';
+
+                                            if ($row['room_status'] === 'clean') {
+                                                $statusText = 'Clean';
+                                                $statusClass = 'status-clean';
+                                            } elseif ($row['room_status'] === 'dirty') {
+                                                $statusText = 'Dirty';
+                                                $statusClass = 'status-dirty';
+                                            } elseif ($row['room_status'] === 'under_maintenance') {
+                                                $statusText = 'Maintenance';
+                                                $statusClass = 'status-maintenance';
+                                            }
                                     ?>
                                 
                                     <div class="room">
                                         <h2><?php echo $row['room_id']?></h2>
-                                        <p>Status: <span id="status<?php echo $row['room_id']; ?>" class="status-clean">Clean</span></p>
-                                        <button onclick="updateStatus('<?php echo $row['room_id']; ?>')">Toggle Status</button>
+                                        <p>Status: <span id="status<?php echo $row['room_id']; ?>" class="<?php echo $statusClass; ?>"><?php echo $statusText; ?></span></p>
                                     </div>
 
                                     <?php 
@@ -256,24 +271,6 @@ function deleteAccount(id) {
             window.location.href = "../functions/delete-account.php?id="+id;
         }
 </script>
-            <script>
-                function updateStatus(roomNumber) {
-                    var statusElement = document.getElementById("status" + roomNumber);
-                    var currentStatus = statusElement.textContent;
-                    var newStatus;
-                    if (currentStatus === "Clean") {
-                        newStatus = "Dirty";
-                    } else if (currentStatus === "Dirty") {
-                        newStatus = "Maintenance";
-                    } else {
-                        newStatus = "Clean";
-                    }
-                    statusElement.textContent = newStatus;
-                    statusElement.classList.toggle("status-clean", newStatus === "Clean");
-                    statusElement.classList.toggle("status-dirty", newStatus === "Dirty");
-                    statusElement.classList.toggle("status-maintenance", newStatus === "Maintenance");
-                }
-            </script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

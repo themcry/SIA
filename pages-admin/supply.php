@@ -146,7 +146,7 @@ if (!isset($_SESSION['id'])) {
                                                 <td>' . $row['avail_qty'] . '</td>
                                                 <td>
                                                     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editSupplyModal'.$row['id'].'">Edit</button>
-                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal">Delete</button>
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal'.$row['id'].'">Delete</button>
                                                 </td>
                                             </tr>';
 
@@ -176,7 +176,7 @@ if (!isset($_SESSION['id'])) {
                                             <label for="availableQuantity" class="form-label">Available Quantity</label>
                                             <input type="number" class="form-control" id="availableQuantity" name="avail_qty" value="<?php echo $row['avail_qty'] ?>">
                                         </div>
-                                        <input type="hidden" name="supp_id" value="<?php echo $row['supp_id'] ?>">
+                                        <input type="hidden" name="supp_id" value="<?php echo $row['id'] ?>">
                                         <button type="submit" class="btn btn-primary">Update Supply</button>
                                     </form>
                                 </div>
@@ -233,16 +233,16 @@ if (!isset($_SESSION['id'])) {
 
 
           <!-- Delete Modal -->
-          <?php $statement = "SELECT * FROM supply";
-                                $result = mysqli_query($conn, $query);
-                                ?>
-                                <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+          <?php 
+          $result = mysqli_query($conn, $query);
+          ?>
+          <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+<div class="modal fade" id="confirmDeleteModal<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel<?php echo $row['id']; ?>" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Delete</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title" id="confirmDeleteModalLabel<?php echo $row['id']; ?>">Confirm Delete</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -252,14 +252,15 @@ if (!isset($_SESSION['id'])) {
           
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <input type="hidden" name="supp_id" id="supp_id" value="<?php echo $row['id'] ?>">
-          <button type="submit" class="btn btn-danger" onclick="confirmDelete(<?php echo $row['id'] ?>)">Delete</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <input type="hidden" name="supp_id" value="<?php echo $row['id']; ?>">
+          <button type="submit" class="btn btn-danger">Delete</button>
         </div>
       </form>
     </div>
   </div>
-  <?php } ?>
+</div>
+<?php } ?>
 </div>
 </div>
 </div>
