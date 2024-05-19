@@ -131,7 +131,7 @@ if ($result->num_rows > 0) {
         <div class="card-body">
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
-                    <div class="text-s font-weight-bold text-white text-uppercase mb-1">Today Booking</div>
+                    <div class="text-s font-weight-bold text-white text-uppercase mb-1">Today Bookings</div>
                     <div class="h1 mb-0 font-weight-bold text-white"><?php echo $today_bookings_count; ?></div>
                 </div>
                 <div class="col-auto">
@@ -166,7 +166,7 @@ if ($result->num_rows > 0) {
         <div class="card-body">
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
-                    <div class="text-small font-weight-bold text-white text-uppercase mb-1">Vacant Room</div>
+                    <div class="text-small font-weight-bold text-white text-uppercase mb-1">Vacant Rooms</div>
                     <div class="row no-gutters align-items-center">
                         <div class="col-auto">
                             <div class="h1 mb-0 mr-3 font-weight-bold text-white"><?php echo $vacant_rooms_count; ?></div> <!-- Display the vacant rooms count here -->
